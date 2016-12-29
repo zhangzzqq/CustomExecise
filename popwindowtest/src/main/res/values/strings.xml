@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">PopWindowTest</string>
+    <string name="private_chat">chat</string>
+    <string name="group_chat">group_chat</string>
+    <string name="add_contacts">add_contacts</string>
+</resources>
