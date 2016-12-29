@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 
 public class test {
 
-
     public class MyLayout extends LinearLayout {
         @Override
         public boolean dispatchTouchEvent(MotionEvent ev) {
