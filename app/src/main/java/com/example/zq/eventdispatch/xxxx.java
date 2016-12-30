@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
  * Created by stevenzhang on 2016/12/29 0029.
  */
 
-public class test {
+public class xxxx {
 
     public class MyLayout extends LinearLayout {
         @Override
