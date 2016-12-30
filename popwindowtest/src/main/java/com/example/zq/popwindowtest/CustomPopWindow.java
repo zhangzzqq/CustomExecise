@@ -1,6 +1,7 @@
 package com.example.zq.popwindowtest;
 
 import android.app.Activity;
+import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,9 +32,10 @@ public class CustomPopWindow {
     public CustomPopWindow(final Activity act, View v) {
         View convertView = LayoutInflater.from(act).inflate(R.layout.share_dialog,null);
         popupWindow = new PopupWindow(convertView, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
-//        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
         setBackgroundAlpha(act, 0.4f);
-        popupWindow.showAtLocation((View) v.getParent(), Gravity.AXIS_X_SHIFT | Gravity.BOTTOM, 0, 0);
+        //在最底部显示
+        popupWindow.showAtLocation(v, Gravity.AXIS_X_SHIFT | Gravity.BOTTOM, 0, 0);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {
