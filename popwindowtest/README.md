@@ -6,3 +6,5 @@
 
     //在最底部显示，这个也是子控件 button
     popupWindow.showAtLocation((View) v.getParent(), Gravity.AXIS_X_SHIFT | Gravity.BOTTOM, 0, 0);
+    
+    

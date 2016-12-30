@@ -1,1 +1,1 @@
-include ':app', ':popwindowtest'
+include ':app', ':popwindowtest', ':customImageView', ':photoPicker', ':seebigpic', ':customviewTest', ':customViewLock'
