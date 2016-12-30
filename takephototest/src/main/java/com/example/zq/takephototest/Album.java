@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -60,14 +59,9 @@ public class Album extends Activity  implements View.OnClickListener{
 //		}
 //		//保存在这个文件夹下
 //		File file_img = new File(tmpDir.getAbsolutePath() + "avater.png");
-		
 		//回收bitmap
-		destroyBitmap();
-		
+//		destroyBitmap();
 	}
-
-
-
 	@Override
 	public void onClick(View view) {
 		switch (view.getId()){
@@ -80,11 +74,9 @@ public class Album extends Activity  implements View.OnClickListener{
 				Intent intent2 = new Intent(Intent.ACTION_GET_CONTENT);
 				intent2.setType("image/*");
 				startActivityForResult(intent2,REQCODE2);
-				
 				break;
 		}
 	}
-
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -94,7 +86,7 @@ public class Album extends Activity  implements View.OnClickListener{
 		{
 			if(requestCode==REQCODE1){
 				Bundle bundle = data.getExtras();
-				Bitmap bitmap = (Bitmap) bundle.get("data");
+				Bitmap bitmap =  bundle.getParcelable("data");
 				//进行裁减处理
 				Uri uri  = saveBitmap(bitmap);
 				startImageZoom(uri);
@@ -104,23 +96,34 @@ public class Album extends Activity  implements View.OnClickListener{
 				startImageZoom(fileUri);
 			}else if(requestCode==REQCODE3){
 				Bundle bundle = data.getExtras();
+				//获取的内容是否为空
+				if(bundle == null){
+					return;
+				}
 				bitmap =  bundle.getParcelable("data");
+				
 				image.setImageBitmap(bitmap);
 			}
 		}
 	}
 	//拍照
 	private Uri saveBitmap(Bitmap mBitmap) {
-
 		try {
-			FileOutputStream fos = new FileOutputStream(tmDir);
+			File tmpDir = new File(Environment.getExternalStorageDirectory() + "/com.jikexueyuan.avater");
+			//如果路径不存在，则创建
+			if(!tmpDir.exists())
+			{
+				tmpDir.mkdir();
+			}
+			//保存在这个文件夹下
+			File file_img = new File(tmpDir.getAbsolutePath() + "avater.png");
+			FileOutputStream fos = new FileOutputStream(file_img);		
 			//把图像写入流中
 			mBitmap.compress(Bitmap.CompressFormat.PNG,100,fos);
 			fos.flush();
 			fos.close();
 			//把file文件转换为uri 
-			return Uri.fromFile(tmDir);
-			
+			return Uri.fromFile(file_img);
 		}  catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;
@@ -150,28 +153,47 @@ public class Album extends Activity  implements View.OnClickListener{
 	}
 
 	
-	//照片裁减
-	private void startImageZoom(Uri uri) {
-		Intent intent = new Intent ("com.android.camera.action.CROP");
-		//设置uri和图像类型
-		intent.setDataAndType(uri,"image/*");
-		intent.putExtra("crop","true");
-		//缩放比例
-		intent.putExtra("aspectX",1);
-		intent.putExtra("aspectY",1);
-		//裁减图片的宽高
-		intent.putExtra("outputX",150);
-		intent.putExtra("outputY",150);
-		//返回数据
-		intent.putExtra("return-data",true);
-		startActivityForResult(intent,REQCODE3);
-	
-	}
+//	//照片裁减
+//	private void startImageZoom(Uri uri) {
+//		Intent intent = new Intent ("com.android.camera.action.CROP");
+//		//设置uri和图像类型
+//		intent.setDataAndType(uri,"image/*");
+//		intent.putExtra("crop","true");
+//		//缩放比例
+//		intent.putExtra("aspectX",1);
+//		intent.putExtra("aspectY",1);
+//		//裁减图片的宽高
+//		intent.putExtra("outputX",150);
+//		intent.putExtra("outputY",150);
+//		//返回数据
+//		intent.putExtra("return-data",true);
+//		startActivityForResult(intent,REQCODE3);
+//	
+//	}
 
+	//图像裁剪方法
+	private void startImageZoom(Uri uri)
+	{
+		//new一个图像裁剪的intent
+		Intent intent = new Intent("com.android.camera.action.CROP");
+		//设置数据和类型 uri和图像类型
+		intent.setDataAndType(uri, "image/*");
+		//可以裁剪的
+		intent.putExtra("crop", "true");
+		//图片的比例
+		intent.putExtra("aspectX", 1);
+		intent.putExtra("aspectY", 1);
+		//裁剪图片的宽和高
+		intent.putExtra("outputX", 150);
+		intent.putExtra("outputY", 150);
+		//返回数据
+		intent.putExtra("return-data", true);
+		startActivityForResult(intent, REQCODE3);
+	}
+	
 	private void destroyBitmap() {
 		
 		if(bitmap!=null&&!bitmap.isRecycled()){
-			
 			bitmap.recycle();
 			bitmap=null;
 		}
