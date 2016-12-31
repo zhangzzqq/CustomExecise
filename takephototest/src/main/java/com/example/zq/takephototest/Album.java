@@ -38,7 +38,7 @@ public class Album extends Activity  implements View.OnClickListener{
 		
 		Button btnCameral = (Button) findViewById(R.id.btn_camera);
 		Button btnGallery = (Button) findViewById(R.id.btn_gallery);
-		image = (ImageView) findViewById(R.id.iv);
+		image = (ImageView) findViewById(R.id.imageView);
 		btnCameral.setOnClickListener(this);
 		btnGallery.setOnClickListener(this);
 	
@@ -51,16 +51,8 @@ public class Album extends Activity  implements View.OnClickListener{
 				tmDir.mkdirs();
 			}
 		}
-//		File tmpDir = new File(Environment.getExternalStorageDirectory() + "/com.jikexueyuan.avater");
-//		//如果路径不存在，则创建
-//		if(!tmpDir.exists())
-//		{
-//			tmpDir.mkdir();
-//		}
-//		//保存在这个文件夹下
-//		File file_img = new File(tmpDir.getAbsolutePath() + "avater.png");
 		//回收bitmap
-//		destroyBitmap();
+		destroyBitmap();
 	}
 	@Override
 	public void onClick(View view) {
@@ -89,6 +81,9 @@ public class Album extends Activity  implements View.OnClickListener{
 				Bitmap bitmap =  bundle.getParcelable("data");
 				//进行裁减处理
 				Uri uri  = saveBitmap(bitmap);
+				//或者通过TakePhoto类中的下面两行代码获得uri
+//				File  file  = new File(mFilePath);
+//				Uri uri = Uri.fromFile(file);
 				startImageZoom(uri);
 			}else if(requestCode==REQCODE2){
 				Uri uri = data.getData();
@@ -97,11 +92,7 @@ public class Album extends Activity  implements View.OnClickListener{
 			}else if(requestCode==REQCODE3){
 				Bundle bundle = data.getExtras();
 				//获取的内容是否为空
-				if(bundle == null){
-					return;
-				}
 				bitmap =  bundle.getParcelable("data");
-				
 				image.setImageBitmap(bitmap);
 			}
 		}
@@ -109,21 +100,21 @@ public class Album extends Activity  implements View.OnClickListener{
 	//拍照
 	private Uri saveBitmap(Bitmap mBitmap) {
 		try {
-			File tmpDir = new File(Environment.getExternalStorageDirectory() + "/com.jikexueyuan.avater");
-			//如果路径不存在，则创建
-			if(!tmpDir.exists())
-			{
-				tmpDir.mkdir();
-			}
-			//保存在这个文件夹下
-			File file_img = new File(tmpDir.getAbsolutePath() + "avater.png");
-			FileOutputStream fos = new FileOutputStream(file_img);		
+//			File tmpDir = new File(Environment.getExternalStorageDirectory() + "/com.jikexueyuan.avater");
+//			//如果路径不存在，则创建
+//			if(!tmpDir.exists())
+//			{
+//				tmpDir.mkdir();
+//			}
+//			//保存在这个文件夹下
+//			File file_img = new File(tmpDir.getAbsolutePath() + "avater.png");
+			FileOutputStream fos = new FileOutputStream(tmDir);
 			//把图像写入流中
 			mBitmap.compress(Bitmap.CompressFormat.PNG,100,fos);
 			fos.flush();
 			fos.close();
 			//把file文件转换为uri 
-			return Uri.fromFile(file_img);
+			return Uri.fromFile(tmDir);
 		}  catch (FileNotFoundException e) {
 			e.printStackTrace();
 			return null;
@@ -143,7 +134,7 @@ public class Album extends Activity  implements View.OnClickListener{
 			is = getContentResolver().openInputStream(uri);
 			Bitmap bitmap = BitmapFactory.decodeStream(is);
 			is.close();
-			saveBitmap(bitmap);
+		return saveBitmap(bitmap);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

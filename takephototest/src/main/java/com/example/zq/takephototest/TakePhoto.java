@@ -93,6 +93,8 @@ public class TakePhoto extends AppCompatActivity {
             else if(requestCode==REQ_2){
                 try {
                     fis=new FileInputStream(mFilePath);
+//                    File  file  = new File(mFilePath);
+//                    Uri uri = Uri.fromFile(file);
                     bitmap=BitmapFactory.decodeStream(fis);
                     imageView.setImageBitmap(bitmap);
                 } catch (FileNotFoundException e) {
