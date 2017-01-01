@@ -1,11 +1,19 @@
 include ':app',
-//        ':popwindowtest',
-//        ':customImageView',
-//        ':photoPicker',
-//        ':seebigpic',
-//        ':customviewTest',
-//        ':permissiondispatcher',
-//        ':permissionrxjava',
-        ':takephototest'
+//        ':popwindowtest'
+// ,
+//        ':customImageView'
+
+        ':photoPicker'
+// ,
+//        ':seebigpic'
+// ,
+//        ':customviewTest'
+// ,
+//        ':permissiondispatcher'
+// ,
+//        ':permissionrxjava'
+// ,
+//        ':takephototest'
+// ,
 //        ':customViewLock'
       

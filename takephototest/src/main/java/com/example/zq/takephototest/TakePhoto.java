@@ -28,6 +28,7 @@ public class TakePhoto extends AppCompatActivity {
     private String mFilePath;
     FileInputStream fis;
     Bitmap bitmap=null;
+    private static final String TAG = "TakePhoto";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,8 @@ public class TakePhoto extends AppCompatActivity {
         boolean sdCardExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
         if(sdCardExist){
             mFilePath = Environment.getExternalStorageDirectory().getPath()+File.separator+"temp.png";
+            Log.e(TAG,"filePath=="+mFilePath);//路径是  TakePhoto: filePath==/storage/emulated/0/temp.png
+
         }
         destroyBitmap(); 
     }

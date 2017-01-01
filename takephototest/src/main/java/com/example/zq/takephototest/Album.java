@@ -8,9 +8,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -93,6 +101,10 @@ public class Album extends Activity  implements View.OnClickListener{
 				//获取的内容是否为空
 				bitmap =  bundle.getParcelable("data");
 				image.setImageBitmap(bitmap);
+
+
+
+				sendImage(bitmap);
 			}
 		}
 	}
@@ -108,7 +120,7 @@ public class Album extends Activity  implements View.OnClickListener{
 //			//保存在这个文件夹下
 //			File file_img = new File(tmpDir.getAbsolutePath() + "avater.png");
 			FileOutputStream fos = new FileOutputStream(tmDir);
-			//把图像写入流中
+			//把图像写入流中的tmDir路径下
 			mBitmap.compress(Bitmap.CompressFormat.PNG,100,fos);
 			fos.flush();
 			fos.close();
@@ -180,7 +192,47 @@ public class Album extends Activity  implements View.OnClickListener{
 		intent.putExtra("return-data", true);
 		startActivityForResult(intent, REQCODE3);
 	}
-	
+
+
+	//图片上传
+	private void sendImage(Bitmap bm)
+	{
+		/**
+		 * ByteArrayOutputstream 捕获内存缓冲数据转换为字节数组 ，且关闭流不会产生IOException
+		 *
+		 */
+		ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+		/** 60 代表压缩40%，如果是100代表压缩0%
+		 * 这个方法会使图片压缩但是，由于是质量压缩，bitmap不会变小，也就是内存依然大，压缩的数据确实变小使用的时候得注意了内存溢出问题
+		 *
+		 */
+		bm.compress(Bitmap.CompressFormat.PNG, 60, stream);
+		//把bitmap转换为数组类型
+		byte[] bytes = stream.toByteArray();
+		//把字符数组转换为Base64位的数据，这样好传输到服务器
+		String img = new String(Base64.encodeToString(bytes, Base64.DEFAULT));
+		//new 一个对象
+		AsyncHttpClient client = new AsyncHttpClient();
+		//new 一个RequestParams对象，这个对象用来保存img数据
+		RequestParams params = new RequestParams();
+		params.add("img", img);
+
+		client.post("http://192.168.56.1/ImgUpload.php", params, new AsyncHttpResponseHandler() {
+			@Override
+			public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
+				Toast.makeText(Album.this, "Upload Success!", Toast.LENGTH_LONG).show();
+			}
+
+			@Override
+			public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
+				Toast.makeText(Album.this, "Upload Fail!", Toast.LENGTH_LONG).show();
+			}
+
+		});
+	}
+
+
 	private void destroyBitmap() {
 		
 		if(bitmap!=null&&!bitmap.isRecycled()){
