@@ -27,13 +27,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
-
         switch (view.getId()){
-
-
             case R.id.btn1:
-
                 LoadingDialogs dialog=new LoadingDialogs(this,"玩命加载中...");
                     //显示Dialog
                 dialog.show();

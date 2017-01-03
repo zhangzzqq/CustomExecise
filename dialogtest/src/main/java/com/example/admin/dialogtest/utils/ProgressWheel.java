@@ -1,7 +1,7 @@
 package com.example.admin.dialogtest.utils;
 
 /**
- * Created by stevenZhang on 2017/1/2.
+ * Created by stevenzhang on 2017/1/3 0003.
  */
 
 import android.annotation.TargetApi;
@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Paint.Style;
 import android.graphics.RectF;
 import android.os.Build;
 import android.os.Parcel;
@@ -100,7 +99,7 @@ public class ProgressWheel extends View {
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1) private void setAnimationEnabled() {
-        int currentApiVersion = android.os.Build.VERSION.SDK_INT;
+        int currentApiVersion = Build.VERSION.SDK_INT;
 
         float animationValue;
         if (currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -179,12 +178,12 @@ public class ProgressWheel extends View {
     private void setupPaints() {
         barPaint.setColor(barColor);
         barPaint.setAntiAlias(true);
-        barPaint.setStyle(Style.STROKE);
+        barPaint.setStyle(Paint.Style.STROKE);
         barPaint.setStrokeWidth(barWidth);
 
         rimPaint.setColor(rimColor);
         rimPaint.setAntiAlias(true);
-        rimPaint.setStyle(Style.STROKE);
+        rimPaint.setStyle(Paint.Style.STROKE);
         rimPaint.setStrokeWidth(rimWidth);
     }
 
@@ -704,8 +703,8 @@ public class ProgressWheel extends View {
 
     static class WheelSavedState extends BaseSavedState {
         //required field that makes Parcelables from a Parcel
-        public static final Parcelable.Creator<WheelSavedState> CREATOR =
-                new Parcelable.Creator<WheelSavedState>() {
+        public static final Creator<WheelSavedState> CREATOR =
+                new Creator<WheelSavedState>() {
                     public WheelSavedState createFromParcel(Parcel in) {
                         return new WheelSavedState(in);
                     }

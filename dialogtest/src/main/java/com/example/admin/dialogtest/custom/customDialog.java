@@ -21,7 +21,6 @@ import com.example.admin.dialogtest.utils.ProgressWheel;
 
 public class CustomDialog extends Activity implements View.OnClickListener{
 
-
     private ProgressWheel progressWheel;
 //    private ProgressWheel progressWheelInterpolated;
 //    private ProgressWheel progressWheelLinear;
