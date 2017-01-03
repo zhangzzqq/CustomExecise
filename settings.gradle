@@ -1,4 +1,6 @@
-include ':app', ':dialogtest'
+include ':app', ':refreshtest'
+
+//        ':dialogtest'
 //        ':popwindowtest'
 // ,
 //        ':customImageView'
