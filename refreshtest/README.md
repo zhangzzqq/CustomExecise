@@ -10,3 +10,8 @@ jianghejie/XRecyclerView 感觉还不错，可以借鉴 同第一个demo类似
 
 SwipeToLoadLayout这个项目的项目还是非常不错的，以后的项目中可以使用，它的方式是可以自定义头部和尾部布局，很人性化
 https://github.com/Aspsine/SwipeToLoadLayout/wiki/Quick-Setup
+
+XRecyclerView 项目比较稳定，跟SwipToLoadLayout类似，用起来也很简单，而且扩展性强，推荐，这个项目需要好好的研究
+出现的错误解决 classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
+
+
