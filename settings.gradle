@@ -1,5 +1,6 @@
-include ':app', ':refreshtest', ':commonutils'
+include ':app', ':commonutils', ':toolstudy'
 
+//        ':refreshtest'
 //        ':dialogtest'
 //        ':popwindowtest'
 // ,
