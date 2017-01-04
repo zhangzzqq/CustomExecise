@@ -1,4 +1,4 @@
-include ':app', ':refreshtest'
+include ':app', ':refreshtest', ':commonutils'
 
 //        ':dialogtest'
 //        ':popwindowtest'
