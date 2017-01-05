@@ -1,4 +1,4 @@
-package com.example.zq.refreshtest;
+package com.example.zq.refreshtest.SwipeRefreshLayout;
 
 /**
  * Created by stevenzhang on 2017/1/3 0003.
