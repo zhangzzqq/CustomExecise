@@ -1,4 +1,7 @@
-include ':app', ':commonutils', ':toolstudy'
+include ':app', ':kaiyanstudy'
+
+//        ':commonutils',
+//        ':toolstudy'
 
 //        ':refreshtest'
 //        ':dialogtest'
