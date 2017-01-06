@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     }
     
     public void initView(){
-        
         //获取控件
         scrollView = (ScrollView) findViewById(R.id.scroll);
         image = (ImageView) findViewById(R.id.iv_pic);

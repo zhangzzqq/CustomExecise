@@ -14,5 +14,7 @@ https://github.com/Aspsine/SwipeToLoadLayout/wiki/Quick-Setup
 出现的错误解决 classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
 
 要么用自己的1 要么用3
+下面的也不错 官方的刷新
+https://github.com/studychen/SeeNewsV2
 
 
