@@ -1,5 +1,9 @@
-include ':app', ':refreshtest'
+include ':app', ':kaiyanstudy'
 
+//        ':commonutils',
+//        ':toolstudy'
+
+//        ':refreshtest'
 //        ':dialogtest'
 //        ':popwindowtest'
 // ,
