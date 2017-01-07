@@ -17,7 +17,7 @@ import com.example.zq.kaiyanstudy.R;
  */
 public class DetailActivity extends AppCompatActivity {
     
-   public static final java.lang.String EXTRA_IMAGE = DetailActivity.class.getSimpleName()+".IMAGE"; 
+    public static final java.lang.String EXTRA_IMAGE = DetailActivity.class.getSimpleName()+".IMAGE"; 
     private ImageView mImageView;
     private FloatingActionButton mFloatingActionButton;
 

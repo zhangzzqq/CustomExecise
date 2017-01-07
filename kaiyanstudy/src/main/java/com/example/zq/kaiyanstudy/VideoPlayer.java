@@ -27,21 +27,15 @@ public class VideoPlayer  extends RecyclerView.Adapter<VideoPlayer.ViewHolder>{
     
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-       View view = inflater.inflate(R.layout.video_item,parent,false);
-
+       View view = inflater.inflate(R.layout.item_video,parent,false);
         return new ViewHolder(view);
-
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         View view =holder.mView;
-
         String str = list.get(position);
         holder.text.setText(list.get(position));
-
-
 
     }
 

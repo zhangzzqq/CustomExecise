@@ -22,10 +22,9 @@ public class MainActivity  extends AppCompatActivity{
     
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void imageClick(View view){
-
         ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(this,view,getString(R.string.image_transition));
         Intent intent = new Intent(this,DetailActivity.class);
-       CustomImageView image = (CustomImageView) view;
+        CustomImageView image = (CustomImageView) view;
         intent.putExtra(DetailActivity.EXTRA_IMAGE,image.getImageId());
         startActivity(intent,options.toBundle());
     }

@@ -17,8 +17,8 @@
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:columnCount="2"
-        app:rowCount="3">
+        app:columnCount="1"
+        app:rowCount="8">
 
         <com.example.zq.kaiyanstudy.donghua.CustomImageView
             android:id="@+id/imageView1"
