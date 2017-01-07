@@ -101,11 +101,9 @@ public class VideoPlayer_recycler extends RecyclerView.Adapter<VideoPlayer_recyc
             }
             return;
         }else if(getItemViewType(position) == TYPE_HEADER){
-                
             view.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View view, MotionEvent motionEvent) {
-                    
                     firstItemTouchListener.onFirstItemTouch(view,motionEvent);
                     return true;
                 }
