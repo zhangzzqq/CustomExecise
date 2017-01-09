@@ -65,18 +65,23 @@ public class MainActivityRecycler extends AppCompatActivity {
         adapter.setOnItemTouchListener(new VideoPlayer_recycler.FirstItemTouchListener() {
             @Override
             public boolean onFirstItemTouch(View view, MotionEvent motionEvent) {
-                Log.e(TAG,"first==");
 
-                ViewGroup.LayoutParams lp = image.getLayoutParams();
+
+                ViewGroup.LayoutParams lp = (ViewGroup.LayoutParams)image.getLayoutParams();
                 switch (motionEvent.getAction()){
                     case MotionEvent.ACTION_UP:
+                        //手指离开
                         mScaling = false;
                         replyImage();
                         break;
-
+                    /**
+                     * 　　getRawX()和getRawY()获得的是相对屏幕的位置，getX()和getY()获得的永远是view的触摸位置坐标
+                     */
                     case MotionEvent.ACTION_MOVE:
                         if(!mScaling){
+                            //attention 不是getScaleY()
                             if(recyclerView.getScrollY()==0){
+                                //滚动到顶部的时候记录位置，否则正常返回,没有头部 mFirstPositon位置为0
                                 mFirstPosition = motionEvent.getY();
                             }else {
                                 break;
@@ -95,9 +100,43 @@ public class MainActivityRecycler extends AppCompatActivity {
                         lp.height = (metrics.widthPixels+distance)*9/16;
                         image.setLayoutParams(lp);
                         //返回true 表示已经完成触摸事件，不再交给其他处理
-                        return true;
+                        return false;
                 }
                 return false;
+//                Log.e(TAG,"first==");
+//
+//                ViewGroup.LayoutParams lp = image.getLayoutParams();
+//                switch (motionEvent.getAction()){
+//                    case MotionEvent.ACTION_UP:
+//                        mScaling = false;
+//                        replyImage();
+//                        break;
+//
+//                    case MotionEvent.ACTION_MOVE:
+//                        if(!mScaling){
+//                            if(recyclerView.getScrollY()==0){
+////                                mFirstPosition = motionEvent.getY();
+//                                mFirstPosition = 0;
+//                            }else {
+//                                break;
+//                            }
+//                        }
+//                        //滚动距离乘以一个系数
+//                        int distance = (int) ((motionEvent.getY()-mFirstPosition)*0.6);
+//                        Log.v(TAG,"distance="+distance);
+//                        //当前位置比记录的位置要小，正常返回
+//                        if(distance<0){
+//                            break;
+//                        }
+//                        //处理放大
+//                        mScaling = true;
+//                        lp.width = metrics.widthPixels+distance;
+//                        lp.height = (metrics.widthPixels+distance)*9/16;
+//                        image.setLayoutParams(lp);
+//                        //返回true 表示已经完成触摸事件，不再交给其他处理
+//                        return true;
+//                }
+//                return false;
             }
         });
         

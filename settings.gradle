@@ -1,7 +1,7 @@
-include ':app', ':kaiyanstudy'
+include ':app', ':kaiyanstudy',
 
 //        ':commonutils',
-//        ':toolstudy'
+        ':toolstudy'
 
 //        ':refreshtest'
 //        ':dialogtest'
