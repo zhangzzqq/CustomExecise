@@ -85,3 +85,25 @@ private ScrollView mScrollView;
         }
     }
 }
+
+Android 中可设置随着窗口大小调整缩放比例，我们有时候需要知道手机屏幕的边界，以避免出现缩放造成的布局变形问题。
+http://blog.csdn.net/qq_24304811/article/details/51214366
+Android 中提供DisplayMetircs 类可以获取到分辨率，即DisplayMetics 类：
+在Andorid.util 包下的DisplayMetrics 类提供了一种关于显示的通用信息，如显示大小，分辨率和字体。
+（官方解释：A structure describing general information about a display, such as its size, density, and font scaling.）
+ mImageViewTabline = (ImageView) findViewById(R.id.iv_tabline);
+ 
+      //获取到当前window管理的一个display对象
+        Display display = getWindow().getWindowManager().getDefaultDisplay();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+       // 将当前的窗口信息放到DisplayMetrics类中
+        display.getMetrics(displayMetrics);
+       // 获取到屏幕的宽度像素的三分之一
+        mScreen1_3 = displayMetrics.widthPixels / 3;
+        LayoutParams params = mImageViewTabline.getLayoutParams();
+        params.width = mScreen1_3;
+        mImageViewTabline.setLayoutParams(params);
+        
+        构造函数DisplayMetrics 不需要传递任何参数；getDefaultDisplay() 
+        方法将取得的宽高维度存放于DisplayMetrics 对象中，
+        而取得的宽高维度是以像素为单位(Pixel) ，“像素”所指的是“绝对像素”而非“相对像素”。

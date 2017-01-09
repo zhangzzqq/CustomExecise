@@ -1,20 +1,15 @@
-include ':app', ':kaiyanstudy', ':fragmentStudy'
+include ':app', ':hideHead', ':kaiyanstudy'
 
+//        ':fragmentStudy'
 //        ':commonutils',
 //        ':toolstudy'
-
 //        ':refreshtest'
 //        ':dialogtest'
 //        ':popwindowtest'
-// ,
 //        ':customImageView'
-
 //        ':photoPicker'
-// ,
 //        ':seebigpic'
-// ,
 //        ':customviewTest'
-// ,
 //        ':permissiondispatcher'
 // ,
 //        ':permissionrxjava'

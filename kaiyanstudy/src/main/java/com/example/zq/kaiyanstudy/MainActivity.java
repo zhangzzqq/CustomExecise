@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_recycler);
+        setContentView(R.layout.activity_main);
         
         initView();
         initData();
@@ -44,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.iv_pic);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         
-        //获取屏幕的宽高
+        //获取屏幕的宽高 DisplayMetrics 类提供了一种关于显示的通用信息，如显示大小，分辨率和字体。
         metrics = new DisplayMetrics();
+        //把当前窗口信息传递给metrics
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         
         //设置图片初始大小，这里设置满屏16:9
@@ -78,12 +79,14 @@ public class MainActivity extends AppCompatActivity {
                             if(scrollView.getScrollY()==0){
                                 //滚动到顶部的时候记录位置，否则正常返回,没有头部 mFirstPositon位置为0
                                 mFirstPosition = motionEvent.getY();
+                                Log.v(TAG,"mFirstPosition0="+mFirstPosition);
                             }else {
                                 break;
                             }
                         }
-                        //滚动距离乘以一个系数
+                        //滚动距离乘以一个系数，这个时候的motionEvent.getY()的值比上面80行值要大，因为手指还在向下滑动
                         int distance = (int) ((motionEvent.getY()-mFirstPosition)*0.6);
+                        Log.v(TAG,"motionEvent.getY()="+motionEvent.getY());
                         Log.v(TAG,"distance="+distance);
                         //当前位置比记录的位置要小，正常返回
                         if(distance<0){
@@ -100,14 +103,12 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
+        
         //recyclerView逻辑
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setNestedScrollingEnabled(false);
         VideoPlayer  adapter = new VideoPlayer(this, getData());
         recyclerView.setAdapter(adapter);
-
-
     }
 
     //recyclerView数据源
