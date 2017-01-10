@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.multi_select;
+package me.drakeet.multitype.sample.multi_select.provider;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +25,7 @@ import android.widget.TextView;
 import java.util.Set;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.multi_select.item.Square;
 
 import static java.lang.String.valueOf;
 
@@ -71,7 +72,9 @@ public class SquareViewProvider extends ItemViewProvider<Square, SquareViewProvi
             squareView = (TextView) itemView.findViewById(R.id.square);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
-                    itemView.setSelected(square.isSelected = !square.isSelected);
+                    
+                    itemView.setSelected(square.isSelected = !square.isSelected); //改变textView状态，选中切换，选中--》没有选中；没有选中--》选中
+                   //记住选中的数字 
                     if (square.isSelected) {
                         selectedSet.add(square.number);
                     } else {

@@ -32,6 +32,7 @@ import me.drakeet.multitype.sample.normal.item.TextItem;
 public class TextItemViewProvider
     extends ItemViewProvider<TextItem, TextItemViewProvider.TextHolder> {
 
+    //ViewHolder 复用
     static class TextHolder extends RecyclerView.ViewHolder {
         @NonNull private final TextView text;
 

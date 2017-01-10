@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
-
-import android.support.annotation.NonNull;
-import java.util.List;
+package me.drakeet.multitype.sample.multi_select.item;
 
 /**
  * @author drakeet
  */
-public class PostList {
+public class Square {
 
-    final List<Post> posts;
+    public final int number;
+    public boolean isSelected;
 
 
-    public PostList(@NonNull List<Post> posts) {this.posts = posts;}
+    public Square(int number) {this.number = number;}
 }

@@ -14,35 +14,37 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
+package me.drakeet.multitype.sample.bilibili.provider;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+import java.util.List;
 import me.drakeet.multitype.ItemViewProvider;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.bilibili.item.Post;
+import me.drakeet.multitype.sample.bilibili.item.PostList;
 
 /**
  * @author drakeet
  */
-public class PostViewProvider
-    extends ItemViewProvider<Post, PostViewProvider.ViewHolder> {
+public class HorizontalPostsViewProvider
+    extends ItemViewProvider<PostList, HorizontalPostsViewProvider.ViewHolder> {
 
     @NonNull @Override
     protected ViewHolder onCreateViewHolder(
         @NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
-        View view = inflater.inflate(R.layout.item_post, parent, false);
+        View view = inflater.inflate(R.layout.item_horizontal_list, parent, false);
         return new ViewHolder(view);
     }
 
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull Post post) {
-        holder.setData(post);
+    protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull PostList postList) {
+        holder.setPosts(postList.posts);
         assertGetAdapterNonNull();
     }
 
@@ -57,22 +59,26 @@ public class PostViewProvider
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    //ViewHolder复用
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView cover;
-        private TextView title;
-
-
-        ViewHolder(@NonNull View itemView) {
+        private RecyclerView recyclerView;
+        private PostsAdapter adapter;
+        
+        private ViewHolder(@NonNull View itemView) {
             super(itemView);
-            cover = (ImageView) itemView.findViewById(R.id.cover);
-            title = (TextView) itemView.findViewById(R.id.title);
+            recyclerView = (RecyclerView) itemView.findViewById(R.id.post_list);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext());
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            recyclerView.setLayoutManager(layoutManager);
+            adapter = new PostsAdapter();
+            recyclerView.setAdapter(adapter);
         }
 
 
-        void setData(@NonNull final Post post) {
-            cover.setImageResource(post.coverResId);
-            title.setText(post.title);
+        private void setPosts(List<Post> posts) {
+            adapter.setPosts(posts);
+            adapter.notifyDataSetChanged();
         }
     }
 }

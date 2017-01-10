@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
+package me.drakeet.multitype.sample.bilibili.item;
 
 import android.support.annotation.NonNull;
+import java.util.List;
 
 /**
  * @author drakeet
  */
-public class Post {
+public class PostList {
 
-    public int coverResId;
-    public String title;
+    public final List<Post> posts;
 
 
-    public Post(int coverResId, @NonNull final String title) {
-        this.coverResId = coverResId;
-        this.title = title;
-    }
+    public PostList(@NonNull List<Post> posts) {this.posts = posts;}
 }

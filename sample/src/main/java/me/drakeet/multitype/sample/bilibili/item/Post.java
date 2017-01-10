@@ -14,16 +14,21 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.multi_select;
+package me.drakeet.multitype.sample.bilibili.item;
+
+import android.support.annotation.NonNull;
 
 /**
  * @author drakeet
  */
-public class Square {
+public class Post {
 
-    public final int number;
-    public boolean isSelected;
+    public int coverResId;
+    public String title;
 
 
-    public Square(int number) {this.number = number;}
+    public Post(int coverResId, @NonNull final String title) {
+        this.coverResId = coverResId;
+        this.title = title;
+    }
 }

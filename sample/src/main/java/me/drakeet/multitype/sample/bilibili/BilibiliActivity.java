@@ -27,6 +27,10 @@ import java.util.List;
 import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.bilibili.item.Post;
+import me.drakeet.multitype.sample.bilibili.item.PostList;
+import me.drakeet.multitype.sample.bilibili.provider.HorizontalPostsViewProvider;
+import me.drakeet.multitype.sample.bilibili.provider.PostViewProvider;
 import me.drakeet.multitype.sample.common.Category;
 
 import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
@@ -39,8 +43,7 @@ public class BilibiliActivity extends MenuBaseActivity {
     private static final int SPAN_COUNT = 2;
     private List<Object> items;
     private MultiTypeAdapter adapter;
-
-
+    
     private static class JsonData {
 
         private final String PREFIX = "这是一条长长的达到两行的标题文字";
@@ -54,8 +57,6 @@ public class BilibiliActivity extends MenuBaseActivity {
         Post[] postArray = { post00, post01, post10, post11 };
 
         List<Post> postList = new ArrayList<>();
-
-
         {
             postList.add(post00);
             postList.add(post00);

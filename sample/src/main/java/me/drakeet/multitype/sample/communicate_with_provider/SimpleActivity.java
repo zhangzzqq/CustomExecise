@@ -29,7 +29,7 @@ import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 import static me.drakeet.multitype.MultiTypeAsserts.assertHasTheSameAdapter;
 
 /**
- * @author drakeet
+ * @author drakeet，好像可以忽略，一个可用可不用的代码
  */
 public class SimpleActivity extends MenuBaseActivity {
 

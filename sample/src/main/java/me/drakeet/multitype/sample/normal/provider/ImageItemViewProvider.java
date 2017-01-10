@@ -34,8 +34,7 @@ public class ImageItemViewProvider
 
     class ImageHolder extends RecyclerView.ViewHolder {
         @NonNull private final ImageView image;
-
-
+        
         ImageHolder(View itemView) {
             super(itemView);
             image = (ImageView) itemView.findViewById(R.id.image);

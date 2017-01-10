@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package me.drakeet.multitype.sample.bilibili;
+package me.drakeet.multitype.sample.bilibili.provider;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,10 +24,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import me.drakeet.multitype.sample.R;
+import me.drakeet.multitype.sample.bilibili.item.Post;
 
 /**
  * @author drakeet
  */
+
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     private List<Post> posts;

@@ -37,8 +37,7 @@ public class NormalActivity extends MenuBaseActivity {
 
     private MultiTypeAdapter adapter;
     private List<Object> items;
-
-
+    
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
@@ -48,9 +47,11 @@ public class NormalActivity extends MenuBaseActivity {
 
         //设置
         adapter = new MultiTypeAdapter(items);
+        
         adapter.applyGlobalMultiTypePool();
 
-        adapter.register(RichItem.class, new RichItemViewProvider());
+        adapter.register(RichItem.class, new RichItemViewProvider());//局部注册
+//        GlobalMultiTypePool.register(RichItem.class,new RichItemViewProvider());//全局注册
 //        adapter.register(TextItem.class, new TextItemViewProvider());
 //        adapter.register(ImageItem.class, new ImageItemViewProvider());
 //        adapter.register(RichItem.class, new RichItemViewProvider());
@@ -65,7 +66,6 @@ public class NormalActivity extends MenuBaseActivity {
             items.add(imageItem);
             items.add(richItem);
         }
-
         recyclerView.setAdapter(adapter);
     }
 }

@@ -28,6 +28,8 @@ import me.drakeet.multitype.MultiTypeAdapter;
 import me.drakeet.multitype.sample.MenuBaseActivity;
 import me.drakeet.multitype.sample.R;
 import me.drakeet.multitype.sample.common.Category;
+import me.drakeet.multitype.sample.multi_select.item.Square;
+import me.drakeet.multitype.sample.multi_select.provider.SquareViewProvider;
 
 import static me.drakeet.multitype.MultiTypeAsserts.assertAllRegistered;
 
@@ -58,7 +60,10 @@ public class MultiSelectActivity extends MenuBaseActivity {
 
         recyclerView.setLayoutManager(layoutManager);
         adapter = new MultiTypeAdapter(items);
+        //attention 全局注册要在 adapter.applyGlobalMutiTypePool之前注册，注测得方式在 MultiTypeInstaller类中
+        //使全局的类加入到布局中来
         adapter.applyGlobalMultiTypePool();
+        //局部注册
         adapter.register(Square.class, new SquareViewProvider(selectedSet));
 
         assertAllRegistered(adapter, items);
@@ -72,12 +77,12 @@ public class MultiSelectActivity extends MenuBaseActivity {
         Category spacialCategory = new Category("特别篇");
         items.add(spacialCategory);
         for (int i = 0; i < 7; i++) {
-            items.add(new Square(i + 1));
+            items.add(new Square(i + 1));//把square对象加入进来
         }
         Category currentCategory = new Category("本篇");
         items.add(currentCategory);
-        for (int i = 0; i < 1000; i++) {
-            items.add(new Square(i + 1));
+        for (int i = 0; i < 1000; i++) {  
+            items.add(new Square(i + 1));  //把square对象加入进来
         }
     }
 
