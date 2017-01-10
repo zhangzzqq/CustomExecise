@@ -1,5 +1,7 @@
-include ':app', ':hideHead', ':kaiyanstudy'
+include ':app', ':sample', ':library'
 
+//        ':hideHead',
+//        ':kaiyanstudy'
 //        ':fragmentStudy'
 //        ':commonutils',
 //        ':toolstudy'
