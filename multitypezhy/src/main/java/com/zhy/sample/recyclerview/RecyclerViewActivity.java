@@ -61,8 +61,6 @@ public class RecyclerViewActivity extends AppCompatActivity
                 holder.setText(R.id.id_item_list_title, s + " : " + holder.getAdapterPosition() + " , " + holder.getLayoutPosition());
             }
 
-         
-
 //            @Override
 //            public void onViewHolderCreated(ViewHolder holder, View itemView) {
 //                super.onViewHolderCreated(holder, itemView);
