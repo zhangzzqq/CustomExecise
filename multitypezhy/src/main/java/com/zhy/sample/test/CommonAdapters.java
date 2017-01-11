@@ -3,9 +3,8 @@ package com.zhy.sample.test;
 import android.content.Context;
 import android.view.LayoutInflater;
 
-import com.zhy.adapter.abslistview.MultiItemTypeAdapter;
-import com.zhy.adapter.abslistview.ViewHolder;
-import com.zhy.adapter.abslistview.base.ItemViewDelegate;
+import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
+import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.List;
 
@@ -13,7 +12,8 @@ import java.util.List;
  * Created by stevenzhang on 2017/1/11 0011.
  */
 
-public abstract class CommonAdapters<T> extends MultiItemTypeAdapter {
+
+public  abstract  class CommonAdapters<T> extends com.zhy.adapter.recyclerview.MultiItemTypeAdapter {
     
     protected Context mContext;
     protected  int mLayoutId;
@@ -29,6 +29,7 @@ public abstract class CommonAdapters<T> extends MultiItemTypeAdapter {
         mDatas = datas;
         
         addItemViewDelegate(new ItemViewDelegate() {
+
             @Override
             public int getItemViewLayoutId() {
                 return layoutId;
@@ -36,17 +37,23 @@ public abstract class CommonAdapters<T> extends MultiItemTypeAdapter {
 
             @Override
             public boolean isForViewType(Object item, int position) {
-                
-                return ;
+                //本item type
+                return true;
             }
 
             @Override
             public void convert(ViewHolder holder, Object o, int position) {
-
-                CommonAdapters.this.convert(holder,o,position);
+                
+                convert(holder,o,position);
+                
             }
         });
+        
     }
+
+    
+    protected abstract void convert(ViewHolder holder ,Object o ,int position);
+    
     
  
 }
