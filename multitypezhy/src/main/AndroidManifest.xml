@@ -17,15 +17,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MultiItemListViewActivity"
+            android:name=".listview.MultiItemListViewActivity"
             android:label="@string/title_activity_multi_item_list_view" >
         </activity>
         <activity
-            android:name=".RecyclerViewActivity"
+            android:name=".recyclerview.RecyclerViewActivity"
             android:label="@string/title_activity_recycler_view" >
         </activity>
         <activity
-            android:name=".MultiItemRvActivity"
+            android:name=".recyclerview.MultiItemRvActivity"
             android:label="@string/title_activity_multi_item_rv" >
         </activity>
     </application>

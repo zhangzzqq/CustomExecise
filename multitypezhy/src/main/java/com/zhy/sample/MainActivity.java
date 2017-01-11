@@ -9,6 +9,9 @@ import android.widget.ListView;
 
 import com.zhy.adapter.abslistview.CommonAdapter;
 import com.zhy.adapter.abslistview.ViewHolder;
+import com.zhy.sample.listview.MultiItemListViewActivity;
+import com.zhy.sample.recyclerview.MultiItemRvActivity;
+import com.zhy.sample.recyclerview.RecyclerViewActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

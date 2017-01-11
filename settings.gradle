@@ -1,4 +1,6 @@
-include ':app', ':multitype', ':multitype_library'
+include ':app', ':multitypezhy', ':base-adapter-library', ':baseadapter-recyclerview'
+        
+//        ':multitype', ':multitype_library', 
 
 //        ':hideHead',
 //        ':kaiyanstudy'

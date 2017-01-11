@@ -1,4 +1,4 @@
-package com.zhy.sample;
+package com.zhy.sample.recyclerview;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,6 +19,8 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.wrapper.EmptyWrapper;
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 import com.zhy.adapter.recyclerview.wrapper.LoadMoreWrapper;
+import com.zhy.sample.R;
+import com.zhy.sample.widget.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,21 +49,32 @@ public class RecyclerViewActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 //        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        // 添加分隔线
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
 
         mAdapter = new CommonAdapter<String>(this, R.layout.item_list, mDatas)
         {
+            
             @Override
             protected void convert(ViewHolder holder, String s, int position)
             {
                 holder.setText(R.id.id_item_list_title, s + " : " + holder.getAdapterPosition() + " , " + holder.getLayoutPosition());
             }
+
+         
+
+//            @Override
+//            public void onViewHolderCreated(ViewHolder holder, View itemView) {
+//                super.onViewHolderCreated(holder, itemView);
+//                
+//                holder.setText();
+//            }
         };
-
+//        mRecyclerView.setAdapter(mAdapter);
+        //初始化头部和尾部
         initHeaderAndFooter();
-
 //        initEmptyView();
-
+        //加载更多逻辑
         mLoadMoreWrapper = new LoadMoreWrapper(mHeaderAndFooterWrapper);
         mLoadMoreWrapper.setLoadMoreView(R.layout.default_loading);
         mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener()

@@ -20,7 +20,12 @@ public class MsgComingItemDelagate implements ItemViewDelegate<ChatMessage>
     @Override
     public boolean isForViewType(ChatMessage item, int position)
     {
-        return item.isComMeg();
+        if(position==0){
+            return true;
+        }else {
+            return false;
+        }
+//        return item.isComMeg();
     }
 
     @Override

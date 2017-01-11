@@ -15,7 +15,8 @@ public class ChatAdapterForRv extends MultiItemTypeAdapter<ChatMessage>
     public ChatAdapterForRv(Context context, List<ChatMessage> datas)
     {
         super(context, datas);
-
+        //ChatMessage25条数据被被两个addItemViewDelegate()所瓜分显示。
+        //如果是一个addItemViewDelegate 那数据都会显示在当前的itemView
         addItemViewDelegate(new MsgSendItemDelagate());
         addItemViewDelegate(new MsgComingItemDelagate());
     }
