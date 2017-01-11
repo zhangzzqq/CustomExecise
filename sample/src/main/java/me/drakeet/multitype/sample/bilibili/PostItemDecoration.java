@@ -36,7 +36,7 @@ public class PostItemDecoration extends RecyclerView.ItemDecoration {
         this.spanSizeLookup = spanSizeLookup;
     }
 
-
+    //间隙
     @Override
     public void getItemOffsets(
         Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {

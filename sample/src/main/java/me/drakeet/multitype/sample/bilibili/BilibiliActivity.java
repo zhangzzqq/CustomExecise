@@ -93,6 +93,7 @@ public class BilibiliActivity extends MenuBaseActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.list);
 
         final GridLayoutManager layoutManager = new GridLayoutManager(this, SPAN_COUNT);
+        
         SpanSizeLookup spanSizeLookup = new SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -100,6 +101,7 @@ public class BilibiliActivity extends MenuBaseActivity {
                 return (item instanceof PostList || item instanceof Category) ? SPAN_COUNT : 1;
             }
         };
+        
         layoutManager.setSpanSizeLookup(spanSizeLookup);
         recyclerView.setLayoutManager(layoutManager);
         int space = getResources().getDimensionPixelSize(R.dimen.normal_space);
