@@ -1,4 +1,4 @@
-include ':app', ':sample', ':library'
+include ':app', ':multitype', ':multitype_library'
 
 //        ':hideHead',
 //        ':kaiyanstudy'
