@@ -12,6 +12,7 @@ import java.util.List;
  */
 public class ChatAdapterForRv extends MultiItemTypeAdapter<ChatMessage>
 {
+    public static final int TYPE_VIEWPAGER = 0;
     public ChatAdapterForRv(Context context, List<ChatMessage> datas)
     {
         super(context, datas);
@@ -19,5 +20,8 @@ public class ChatAdapterForRv extends MultiItemTypeAdapter<ChatMessage>
         //如果是一个addItemViewDelegate 那数据都会显示在当前的itemView
         addItemViewDelegate(new MsgSendItemDelagate());
         addItemViewDelegate(new MsgComingItemDelagate());
+
+
+        addItemViewDelegate(TYPE_VIEWPAGER,new MsgComingItemDelagate());
     }
 }

@@ -29,46 +29,40 @@ public class multiRecyclerView extends Activity {
         multiRecycler = (RecyclerView) findViewById(R.id.multirecycler);
         multiRecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        CommonAdapters  adapter = new CommonAdapters(this,R.layout.activity_main, list){
-
-//            @Override
-//            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-//            }
+        CommonAdapters  adapter = new CommonAdapters(this, R.layout.activity_main, list) {
             
             @Override
             protected void convert(ViewHolder holder, Object o, int position) {
-                
                 
             }
             
             
         };
-
+        
+       
         adapter.addItemViewDelegate(new ItemViewDelegate() {
             @Override
-            public int getIt0emViewLayoutId() {
-                return ;
+            public int getItemViewLayoutId() {
+                return 0;
             }
 
             @Override
             public boolean isForViewType(Object item, int position) {
-                
                 return false;
             }
 
             @Override
             public void convert(ViewHolder holder, Object o, int position) {
-            
-                                    
+
             }
         });
-
-
+        
+        
         multiRecycler.setAdapter(adapter);
     }
 
 
- 
+        
     
     
 }

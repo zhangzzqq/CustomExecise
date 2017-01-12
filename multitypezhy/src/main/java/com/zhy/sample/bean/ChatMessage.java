@@ -12,7 +12,8 @@ public class ChatMessage
 	private String content;
 	private String createDate;
 	private boolean isComMeg;
-
+	private int type;//通过type判断
+	
 	public final static int RECIEVE_MSG = 0;
 	public final static int SEND_MSG = 1;
 
@@ -24,6 +25,7 @@ public class ChatMessage
 		this.content = content;
 		this.createDate = createDate;
 		this.isComMeg = isComMeg;
+		
 	}
 
 	public boolean isComMeg()

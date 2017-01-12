@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 
-public  abstract  class CommonAdapters<T> extends com.zhy.adapter.recyclerview.MultiItemTypeAdapter {
+public  abstract  class CommonAdapters<T> extends com.zhy.adapter.recyclerview.MultiItemTypeAdapter<T> {
     
     protected Context mContext;
     protected  int mLayoutId;
@@ -21,14 +21,14 @@ public  abstract  class CommonAdapters<T> extends com.zhy.adapter.recyclerview.M
     protected LayoutInflater mInflater;
     
     
-    public CommonAdapters(final Context context,final int layoutId, final List datas) {
+    public CommonAdapters(final Context context,final int layoutId, final List<T> datas) {
         super(context, datas);
         mContext = context;
         mInflater = LayoutInflater.from(context);
         mLayoutId = layoutId;
         mDatas = datas;
         
-        addItemViewDelegate(new ItemViewDelegate() {
+        addItemViewDelegate(new ItemViewDelegate<T>() {
 
             @Override
             public int getItemViewLayoutId() {
@@ -36,16 +36,15 @@ public  abstract  class CommonAdapters<T> extends com.zhy.adapter.recyclerview.M
             }
 
             @Override
-            public boolean isForViewType(Object item, int position) {
+            public boolean isForViewType(T item, int position) {
                 //本item type
                 return true;
             }
 
             @Override
-            public void convert(ViewHolder holder, Object o, int position) {
+            public void convert(ViewHolder holder, T o, int position) {
                 
                 convert(holder,o,position);
-                
             }
         });
         
@@ -53,6 +52,7 @@ public  abstract  class CommonAdapters<T> extends com.zhy.adapter.recyclerview.M
 
     
     protected abstract void convert(ViewHolder holder ,Object o ,int position);
+    
     
     
  

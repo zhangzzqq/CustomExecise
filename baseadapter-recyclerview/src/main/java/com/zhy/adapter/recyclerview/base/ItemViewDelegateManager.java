@@ -87,7 +87,7 @@ public class ItemViewDelegateManager<T>
         for (int i = 0; i < delegatesCount; i++)
         {
             ItemViewDelegate<T> delegate = delegates.valueAt(i);
-
+            //true 则往下执行
             if (delegate.isForViewType( item, position))
             {
                 delegate.convert(holder, item, position);

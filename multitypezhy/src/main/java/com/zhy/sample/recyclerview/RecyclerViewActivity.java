@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.base.ItemViewDelegate;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.adapter.recyclerview.wrapper.EmptyWrapper;
 import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
@@ -61,13 +62,36 @@ public class RecyclerViewActivity extends AppCompatActivity
                 holder.setText(R.id.id_item_list_title, s + " : " + holder.getAdapterPosition() + " , " + holder.getLayoutPosition());
             }
 
-//            @Override
-//            public void onViewHolderCreated(ViewHolder holder, View itemView) {
-//                super.onViewHolderCreated(holder, itemView);
-//                
-//                holder.setText();
-//            }
+            
         };
+        
+        ///////////////////////复杂列表写法测试////////////////////////////////////
+        
+        mAdapter.addItemViewDelegate(new ItemViewDelegate<String>() {
+
+            public static final int TYPE_VIEWPAGER = 0;
+            
+            @Override
+            public int getItemViewLayoutId() {
+                return 0;
+            }
+
+            @Override
+            public boolean isForViewType(String item, int position) {
+                return false;
+            }
+
+            @Override
+            public void convert(ViewHolder holder, String s, int position) {
+
+            }
+        });
+
+
+     
+        
+        ///////////////////////////////////////////////////////////
+        
 //        mRecyclerView.setAdapter(mAdapter);
         //初始化头部和尾部
         initHeaderAndFooter();

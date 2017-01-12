@@ -11,15 +11,19 @@ import com.zhy.sample.bean.ChatMessage;
 public class MsgComingItemDelagate implements ItemViewDelegate<ChatMessage>
 {
 
+    
     @Override
     public int getItemViewLayoutId()
     {
         return R.layout.main_chat_from_msg;
     }
 
+    
     @Override
     public boolean isForViewType(ChatMessage item, int position)
     {
+     
+      
         if(position==0){
             return true;
         }else {
