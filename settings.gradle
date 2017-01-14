@@ -1,4 +1,8 @@
-include ':app', ':multitypezhy', ':base-adapter-library', ':baseadapter-recyclerview', ':certicate'
+include ':app',':certicate'
+
+//        ':multitypezhy',
+//        ':base-adapter-library',
+//    ':baseadapter-recyclerview',
 
 //        ':multitype', ':multitype_library', 
 

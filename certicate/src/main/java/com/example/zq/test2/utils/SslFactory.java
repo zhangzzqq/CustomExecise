@@ -33,7 +33,8 @@ public class SslFactory {
         final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             //证书中的公钥
             public static final String PUB_KEY =
-                    "MIIFlDCCBHygAwIBAgIQaHNM6T6UrKd0EJMfX58D9TANBgkqhkiG9w0BAQsFADCB\n" +
+                    "-----BEGIN CERTIFICATE-----\n" +
+                            "MIIFlDCCBHygAwIBAgIQaHNM6T6UrKd0EJMfX58D9TANBgkqhkiG9w0BAQsFADCB\n" +
                             "lDELMAkGA1UEBhMCVVMxHTAbBgNVBAoTFFN5bWFudGVjIENvcnBvcmF0aW9uMR8w\n" +
                             "HQYDVQQLExZTeW1hbnRlYyBUcnVzdCBOZXR3b3JrMR0wGwYDVQQLExREb21haW4g\n" +
                             "VmFsaWRhdGVkIFNTTDEmMCQGA1UEAxMdU3ltYW50ZWMgQmFzaWMgRFYgU1NMIENB\n" +
@@ -62,7 +63,8 @@ public class SslFactory {
                             "BXFQI7hzrOiMzIc9oaflpLBp/5HAnrDqEMuAaCLrxCbWePtfOLXhxxKnp2d6buR0\n" +
                             "KCvsfPL+3qx4NYoJUjgNFgXfm96FDbsMPCTpLUAtJLY+xnSwXP7Z6Is78n7CMBzi\n" +
                             "drKXw5qzrGx2BxrH2VKCgARsF3l7Pky1Sdmipma5DLbgKgOUT/awz/ILklZtXpF4\n" +
-                            "H0YR4vz0t9yxkL0XyWWHrJWCPwxaomi4C0sSuDI9lEdkmpBLrrqYbg==";
+                            "H0YR4vz0t9yxkL0XyWWHrJWCPwxaomi4C0sSuDI9lEdkmpBLrrqYbg==\n" +
+                            "-----END CERTIFICATE-----" ;
 
             @Override
             public void checkClientTrusted(
@@ -136,7 +138,7 @@ public class SslFactory {
      */
 
 
-    protected static SSLSocketFactory getSSLSocketFactory(Context context, int[] certificates) {
+    public static SSLSocketFactory getSSLSocketFactory(Context context, int[] certificates) {
 
         if (context == null) {
             throw new NullPointerException("context == null");
@@ -183,6 +185,45 @@ public class SslFactory {
     }
 
 
+    public static SSLSocketFactory getSSLSocketFactoryn() throws Exception {
+        //创建一个不验证证书链的证书信任管理器。
+        final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(
+                    java.security.cert.X509Certificate[] chain,
+                    String authType) throws CertificateException {
+            }
 
+            @Override
+            public void checkServerTrusted(
+                    java.security.cert.X509Certificate[] chain,
+                    String authType) throws CertificateException {
+            }
+
+            @Override
+            public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                return new java.security.cert.X509Certificate[0];
+            }
+        }};
+
+        // Install the all-trusting trust manager
+        final SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, trustAllCerts,
+                new java.security.SecureRandom());
+        // Create an ssl socket factory with our all-trusting manager
+        return sslContext
+                .getSocketFactory();
+    }
+
+
+    //使用自定义SSLSocketFactory
+    private void onHttps(OkHttpClient.Builder builder) {
+        try {
+            builder.sslSocketFactory(getSSLSocketFactory()).hostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
