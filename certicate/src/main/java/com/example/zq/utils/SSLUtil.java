@@ -1,4 +1,4 @@
-package com.example.zq;
+package com.example.zq.utils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -97,4 +97,7 @@ public class SSLUtil {
         }
         return null;
     }
+    
+    
+    
 }

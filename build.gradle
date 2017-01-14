@@ -12,6 +12,7 @@ buildscript {
         // in the individual module build.gradle files
         //zhy插件找不到解决办法添加下面这行代码就OK了 
         classpath 'com.novoda:bintray-release:0.3.4'
+        
     }
 }
 

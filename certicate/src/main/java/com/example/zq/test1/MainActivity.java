@@ -1,4 +1,4 @@
-package com.example.zq;
+package com.example.zq.test1;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -100,7 +100,7 @@ public class MainActivity extends Activity{
                     public void onFailure(retrofit2.Call call, Throwable t) {
 
 
-                        Log.v("MainActivity","=="+t.toString());
+                        Log.v("MainActivity0","=="+t.toString());
                     }
                 });
 

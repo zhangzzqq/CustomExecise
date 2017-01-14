@@ -1,18 +1,29 @@
-package com.example.zq.test2.utils;
+package com.example.zq.utils;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.zq.App;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
+import java.net.URL;
+import java.security.KeyManagementException;
 import java.security.KeyStore;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.security.interfaces.RSAPublicKey;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
@@ -33,38 +44,31 @@ public class SslFactory {
         final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
             //证书中的公钥
             public static final String PUB_KEY =
-                    "-----BEGIN CERTIFICATE-----\n" +
-                            "MIIFlDCCBHygAwIBAgIQaHNM6T6UrKd0EJMfX58D9TANBgkqhkiG9w0BAQsFADCB\n" +
-                            "lDELMAkGA1UEBhMCVVMxHTAbBgNVBAoTFFN5bWFudGVjIENvcnBvcmF0aW9uMR8w\n" +
-                            "HQYDVQQLExZTeW1hbnRlYyBUcnVzdCBOZXR3b3JrMR0wGwYDVQQLExREb21haW4g\n" +
-                            "VmFsaWRhdGVkIFNTTDEmMCQGA1UEAxMdU3ltYW50ZWMgQmFzaWMgRFYgU1NMIENB\n" +
-                            "IC0gRzEwHhcNMTcwMTEyMDAwMDAwWhcNMTgwMTEyMjM1OTU5WjAeMRwwGgYDVQQD\n" +
-                            "DBN3d3cubWVpeWFvbmkuY29tLmNuMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIB\n" +
-                            "CgKCAQEAztHe28sz+QIz5OrCmXd68fCqBmZMvYNLyI9Ht5YIJXfUMRoPRvX1B7t+\n" +
-                            "8rg9DiEaib/Ywl8PjhOeTiFbezGl8Y2g0P8SPYMJOeDdmqChfPucjzREDmW++1P4\n" +
-                            "LTPgh2vQMwy2/kGyllkUwcGCyjkvpZh6co16rcxkleJXBQ1lzfL/GWXT2+OajdLy\n" +
-                            "PT6oaCch93nORZmdmAFHJ6Rbb4nBdZYy3Unwoi9bpOzDqYtcKXZfo9Vxl0aDsU1e\n" +
-                            "1D34j+WnYvY7zg8lAj1I/YXC+5hibfgVX4auofPAtsXXO1dpTlZtkeHZ2t0iKJYP\n" +
-                            "+bAlotXwn2pYR84gsrRb2FLz2A6VXQIDAQABo4ICVTCCAlEwLwYDVR0RBCgwJoIT\n" +
-                            "d3d3Lm1laXlhb25pLmNvbS5jboIPbWVpeWFvbmkuY29tLmNuMAkGA1UdEwQCMAAw\n" +
-                            "YQYDVR0gBFowWDBWBgZngQwBAgEwTDAjBggrBgEFBQcCARYXaHR0cHM6Ly9kLnN5\n" +
-                            "bWNiLmNvbS9jcHMwJQYIKwYBBQUHAgIwGQwXaHR0cHM6Ly9kLnN5bWNiLmNvbS9y\n" +
-                            "cGEwHwYDVR0jBBgwFoAUXGGesHZBqWqqQwvhx24wKW6xzTYwDgYDVR0PAQH/BAQD\n" +
-                            "AgWgMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBXBggrBgEFBQcBAQRL\n" +
-                            "MEkwHwYIKwYBBQUHMAGGE2h0dHA6Ly9oYy5zeW1jZC5jb20wJgYIKwYBBQUHMAKG\n" +
-                            "Gmh0dHA6Ly9oYy5zeW1jYi5jb20vaGMuY3J0MIIBBQYKKwYBBAHWeQIEAgSB9gSB\n" +
-                            "8wDxAHcA3esdK3oNT6Ygi4GtgWhwfi6OnQHVXIiNPRHEzbbsvswAAAFZkISIegAA\n" +
-                            "BAMASDBGAiEAizv2efMP9vQhZiJFu8DNcVyEGvvFy0N+AOwCYUOaNpkCIQDg9szg\n" +
-                            "64JuM5uEkhNIupHOlN/ehKXl+McAtiWS2dFjCQB2AKS5CZC0GFgUh7sTosxncAo8\n" +
-                            "NZgE+RvfuON3zQ7IDdwQAAABWZCEiKoAAAQDAEcwRQIgCssMFB6sftfERFl8Yj5Z\n" +
-                            "A4vbXre8wY1skNxorL1yyEgCIQDGuzmq9DJu1x0JhyNMjcM1a08VMmX0QOFz9+NI\n" +
-                            "jlMKqTANBgkqhkiG9w0BAQsFAAOCAQEAfYifw+m8wumPJwNbYIcusKgTnaPK/lzF\n" +
-                            "3VkoWSHBUp5vcMCFEgANzqhVruupk3zHymIJisCW1BPsoBMG5e+x0F4HyHLtlmKK\n" +
-                            "BXFQI7hzrOiMzIc9oaflpLBp/5HAnrDqEMuAaCLrxCbWePtfOLXhxxKnp2d6buR0\n" +
-                            "KCvsfPL+3qx4NYoJUjgNFgXfm96FDbsMPCTpLUAtJLY+xnSwXP7Z6Is78n7CMBzi\n" +
-                            "drKXw5qzrGx2BxrH2VKCgARsF3l7Pky1Sdmipma5DLbgKgOUT/awz/ILklZtXpF4\n" +
-                            "H0YR4vz0t9yxkL0XyWWHrJWCPwxaomi4C0sSuDI9lEdkmpBLrrqYbg==\n" +
-                            "-----END CERTIFICATE-----" ;
+                    "MIIEpAIBAAKCAQEAztHe28sz+QIz5OrCmXd68fCqBmZMvYNLyI9Ht5YIJXfUMRoP\n" +
+                            "RvX1B7t+8rg9DiEaib/Ywl8PjhOeTiFbezGl8Y2g0P8SPYMJOeDdmqChfPucjzRE\n" +
+                            "DmW++1P4LTPgh2vQMwy2/kGyllkUwcGCyjkvpZh6co16rcxkleJXBQ1lzfL/GWXT\n" +
+                            "2+OajdLyPT6oaCch93nORZmdmAFHJ6Rbb4nBdZYy3Unwoi9bpOzDqYtcKXZfo9Vx\n" +
+                            "l0aDsU1e1D34j+WnYvY7zg8lAj1I/YXC+5hibfgVX4auofPAtsXXO1dpTlZtkeHZ\n" +
+                            "2t0iKJYP+bAlotXwn2pYR84gsrRb2FLz2A6VXQIDAQABAoIBAQCemk8/WruGj+vf\n" +
+                            "9zA4pGnCM/8PXVAoXRG2wjoLTaD9qsEszoE8t82qmlymIiegOD6zuE2v8VpqaB0U\n" +
+                            "aXxQIyjQ7v2OiK0iQuTGX+1RcTGmOQY8w6YVLG2jKye88nWTJFjLbUq//P3JUpMa\n" +
+                            "ax2zmtsxMJdmVZzovz+7uZFmLHoPzpJg24SxNG1QPeIiFgYkaRQQF4ma/SJYxTsd\n" +
+                            "3itFPKEKW+YSEf2jBsvRnxEdpd7W6jzRUqHY4SlpF63T4PJtkIutnJ3NUGrVzmM2\n" +
+                            "aOysqO3vmzDIeFSKi7SEbrT2+0D83o6mVj2sTdBSReASZQhHfgvV+d8YHE75MJJb\n" +
+                            "73EkueIBAoGBAOnB/qN42ihbVz/IzpCW0HuVXjiutBj2mFgMCKLKsPH2WcUYc6WW\n" +
+                            "ng40N9F/ZzwR5eEJ9oHdtbX+N2r6ASgbUulra1VsqcUXzu24WiVBDdE3ErOzC9cR\n" +
+                            "y81MXxJCg8nHq2OVxA+hXXb0J1WZsRXuZq6AF9DQ86Ase0oMLf3C/3idAoGBAOJ/\n" +
+                            "tID0oUblryl+wcZThHh5AtnNQ1ugZ0terQDoCzI36Ldp/DjydqsSIeL4tOgbrLcP\n" +
+                            "4obRMgIKkeNfGR2vBhPtfwtz754MOgyO2vohfMADRUOAE80bOTPzywmGWW9rnNR5\n" +
+                            "0yLp4vPKMm1GbjFPfFUKUUASIiepcXWSERxTNRPBAoGBAK4snk+v/N2VMa2VMlUK\n" +
+                            "Cs4Kven+QrNXCqyQSt8BqFah+MGjNohrcdmjjvPKumFH9MF5avPY/0xb328WWUZJ\n" +
+                            "Fb5XC+La1KTG2KjIdGLN1j3Ni2HaRzg5SmHuReiVJx1yaYIKVcxPsBSyV5ywqAJv\n" +
+                            "YJMlXpl5GA6BFlxWNu6eHT0BAoGAcEpVx9UAG/EFHTJdiSCgvUVpN2e/LC7i5wfi\n" +
+                            "B2ADJPt44W2nAOicEoXjzO32alhGEV/Ls4EFJOPuneXowsGh5sFIyfnJYva21MEC\n" +
+                            "KR3vBhbZAPT/XCFSA8Kq92bm8glM8D4Rge6oeKrWwzw2pzW780ExNO2Ih1dHC73F\n" +
+                            "w+AwoUECgYABsFChUkdJdep5h6ICkkjvgBbinFWv8aknOYLprMzxw0Q4DveYIVKp\n" +
+                            "MQmgh2pcw7TXgat7rUCqnAQV4/P1X0nk6RkgnVSkno4wiEtX6F5H5r6cKgOxgMmo\n" +
+                            "mShs2JsY17diWO9NXdVgFFwlyvOzvKPZUO0R4kgZJ3bIEqLaq0Sg9g==" ;
 
             @Override
             public void checkClientTrusted(
@@ -86,10 +90,14 @@ public class SslFactory {
                 if (!(chain.length > 0)) {
                     throw new IllegalArgumentException("checkServerTrusted: X509Certificate is empty");
                 }
-
-                if (!(null != authType && authType.equalsIgnoreCase("RSA"))) {
-                    throw new CertificateException("checkServerTrusted: AuthType is not RSA");
+                
+                if(authType!=null&&authType.equalsIgnoreCase("RSA")||authType!=null&&authType.equalsIgnoreCase("ECDHE_RSA")){
+                    
                 }
+
+//                if (!(null != authType && authType.equalsIgnoreCase("RSA"))) {
+//                    throw new CertificateException("checkServerTrusted: AuthType is not RSA");
+//                }
 
                 // Perform customary SSL/TLS checks
                 try {
@@ -225,5 +233,97 @@ public class SslFactory {
         }
 
     }
+
+
+    public void initSSLALL() throws KeyManagementException, NoSuchAlgorithmException, IOException {
+//        URL url = new URL("https://certs.cac.washington.edu/CAtest/");
+        URL url = new URL("https://github.com");
+        SSLContext context = SSLContext.getInstance("TLS");
+        context.init(null, new TrustManager[]{tm}, null);
+        HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
+        HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+
+            @Override
+            public boolean verify(String arg0, SSLSession arg1) {
+                return true;
+            }
+        });
+        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+        connection.setDoInput(true);
+        connection.setDoOutput(false);
+        connection.setRequestMethod("GET");
+        connection.connect();
+        InputStream in = connection.getInputStream();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        String line = "";
+        StringBuffer result = new StringBuffer();
+        while ((line = reader.readLine()) != null) {
+            result.append(line);
+        }
+        Log.e("TTTT", result.toString());
+    }
+
+
+    TrustManager tm = new X509TrustManager() {
+        public void checkClientTrusted(X509Certificate[] chain, String authType)
+                throws CertificateException {
+            //do nothing，接受任意客户端证书
+        }
+
+        public void checkServerTrusted(X509Certificate[] chain, String authType)
+                throws CertificateException {
+            //do nothing，接受任意服务端证书
+        }
+
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
+    };
+
+    
+    public static OkHttpClient getUnsafeOkHttpClient() {
+
+        try {
+            // Create a trust manager that does not validate certificate chains
+            final TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(
+                        java.security.cert.X509Certificate[] chain,
+                        String authType) throws CertificateException {
+                }
+
+                @Override
+                public void checkServerTrusted(
+                        java.security.cert.X509Certificate[] chain,
+                        String authType) throws CertificateException {
+                }
+
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return new java.security.cert.X509Certificate[0];
+                }
+            } };
+
+            // Install the all-trusting trust manager
+            final SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, trustAllCerts,
+                    new java.security.SecureRandom());
+            // Create an ssl socket factory with our all-trusting manager
+            final SSLSocketFactory sslSocketFactory = sslContext
+                    .getSocketFactory();
+
+            OkHttpClient okHttpClient = new OkHttpClient();
+            okHttpClient = okHttpClient.newBuilder()
+                    .sslSocketFactory(sslSocketFactory)
+                    .hostnameVerifier(org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER).build();
+
+            return okHttpClient;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    
+
 
 }

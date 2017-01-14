@@ -1,6 +1,6 @@
-package com.example.zq;
+package com.example.zq.test1;
 
-import com.example.zq.test2.utils.SslFactory;
+import com.example.zq.utils.SslFactory;
 
 import javax.net.ssl.SSLSocketFactory;
 
