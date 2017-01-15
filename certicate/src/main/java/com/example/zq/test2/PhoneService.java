@@ -14,6 +14,9 @@ public interface PhoneService {
     @GET("/WebService")
     Call<GridviewModule> getResult(@Query("action") String action, @Query("key") String key);
 
+    @GET("otn/")
+    Call<String> getResult2();
+
 
 
 }
