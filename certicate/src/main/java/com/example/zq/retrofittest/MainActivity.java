@@ -1,4 +1,4 @@
-package com.example.zq.test2;
+package com.example.zq.retrofittest;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -9,6 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zq.test1.GridviewModule;
+import com.example.zq.utils.HttpsUtils;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +36,7 @@ public class MainActivity extends Activity {
     @BindView(R.id.tv_phone_location)
     TextView tvPhoneLocation;
     private PhoneService mService;
-    public static final String BASE_URL = "https://meiyaoni.com.cn/index.php/";
+    public static final String BASE_URL = "http://meiyaoni.com.cn/index.php/";
 
 
     @Override
@@ -48,7 +52,6 @@ public class MainActivity extends Activity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_get_phone_location:
-
                 initData();
                 break;
             
@@ -66,13 +69,20 @@ public class MainActivity extends Activity {
         
 //        OkHttpClient okHttpClient = new OkHttpClient();
 //        okHttpClient.sslSocketFactory()
-        
+
+
+        OkHttpClient.Builder mBuilder= new OkHttpClient.Builder();
+        mBuilder.sslSocketFactory(HttpsUtils.createSSLSocketFactory());
+        mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+//       mBuilder.build();
+
+        OkHttpClient.Builder builder1 =  HttpsUtils.getUnSaveBuilder();
         //1.创建Retrofit对象 attention注意添加 addConverterFactory(GsonConverFactory.create())转换
         Retrofit retrofit = null;
         try {
             retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(BASE_URL)
-                    .client(builder.sslSocketFactory(ZiQianMingUtils.getSSLSocketFactory()).build())
+                    .client(builder1.build())
                     .build();
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,5 +110,13 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this, "获取错误", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    private static class TrustAllHostnameVerifier implements HostnameVerifier {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+            return true;
+        }
     }
 }

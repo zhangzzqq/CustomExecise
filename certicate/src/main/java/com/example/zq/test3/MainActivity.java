@@ -1,238 +1,223 @@
-//package com.example.zq.test3;
+package com.example.zq.test3;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import com.example.zq.utils.HttpsUtils;
+
+import java.io.IOException;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
+import cn.edu.zafu.bmobdemo.R;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+/**
+ * Created by stevenzhang on 2017/1/14 0014.
+ */
+
+public class MainActivity  extends Activity implements View.OnClickListener {
+
+
+    private OkHttpClient client;
+    private Button btn2;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        
+        setContentView(R.layout.activity_test2);
+        btn2 = (Button) findViewById(R.id.btn2);
+        btn2.setOnClickListener(this);
+
+//        RequestBody formBody = new FormEncodingBuilder()
+//                .add("","")
+//                .build();
+        
+    }
+
+   private String postrun(String url) throws IOException {
+       
+        Request request = new Request.Builder().url(url).build();
+        Response response = client.newCall(request).execute();
+        if (response.isSuccessful()) {
+            Log.v("MainActivity3","==="+response.body().string());
+            return response.body().string();
+        } else {
+            throw new IOException("Unexpected code " + response);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            
+            case R.id.btn2:
+//                client = new OkHttpClient();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            postrun("https://kyfw.12306.cn/otn/");
+//                        } catch (IOException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                }).start();
+                getRequest();
+                break;
+            
+            
+        }
+    }
+
+//    javax.net.ssl.SSLHandshakeException: 
+// java.security.cert.CertPathValidatorException: 
+// Trust anchor for certification path not found.
+    private void getRequest() {
+//        HttpsUtils.SSLParams sslParams = HttpsUtils.getSslSocketFactory(null, null, null);
+//        .sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager)
+
+        OkHttpClient.Builder mBuilder= new OkHttpClient.Builder();
+        mBuilder.sslSocketFactory(HttpsUtils.createSSLSocketFactory());
+        mBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+//        client =mBuilder.build();
+
+        
+        final Request request=new Request.Builder()
+                .get()
+                .tag(this)
+                .url("https://kyfw.12306.cn/otn/")
+        
+                .build();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Response response = null;
+                try {
+                   client = new OkHttpClient();
+                    response = client.newCall(request)
+                            .execute();
+                    if (response.isSuccessful()) {
+                        Log.i("WY","打印GET响应的数据：" + response.body().string());
+                    } else {
+                        throw new IOException("Unexpected code " + response);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+
+    }
+
+
+////    private void postRequest() {
+////
+////        RequestBody formBody = new FormEncodingBuilder()
+////                .add("","")
+////                .build();
+////
+////        final Request request = new Request.Builder()
+////                .url("http://www.wooyun.org")
+////                .post(formBody)
+////                .build();
+////
+////        new Thread(new Runnable() {
+////            @Override
+////            public void run() {
+////                Response response = null;
+////                try {
+////                    response = client.newCall(request).execute();
+////                    if (response.isSuccessful()) {
+////                        Log.i("WY","打印POST响应的数据：" + response.body().string());
+////                    } else {
+////                        throw new IOException("Unexpected code " + response);
+////                    }
+////                } catch (IOException e) {
+////                    e.printStackTrace();
+////                }
+////            }
+////        }).start();
+////
+////    }
 //
-///**
-// * Created by stevenzhang on 2017/1/14 0014.
-// */
 //
-//import android.app.Activity;
-//import android.os.Bundle;
-//import android.util.Log;
+//    public void ignoreCard(OkHttpClient client) {
 //
-//import org.apache.http.HttpEntity;
-//import org.apache.http.HttpResponse;
-//import org.apache.http.client.ClientProtocolException;
-//import org.apache.http.client.methods.HttpGet;
-//import org.apache.http.conn.ClientConnectionManager;
-//import org.apache.http.conn.scheme.PlainSocketFactory;
-//import org.apache.http.conn.scheme.Scheme;
-//import org.apache.http.conn.scheme.SchemeRegistry;
-//import org.apache.http.impl.client.DefaultHttpClient;
-//import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-//import org.apache.http.params.BasicHttpParams;
-//import org.apache.http.params.HttpConnectionParams;
-//import org.apache.http.params.HttpParams;
-//
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.io.InputStreamReader;
-//import java.net.URL;
-//import java.security.KeyManagementException;
-//import java.security.KeyStore;
-//import java.security.KeyStoreException;
-//import java.security.NoSuchAlgorithmException;
-//import java.security.cert.Certificate;
-//import java.security.cert.CertificateException;
-//import java.security.cert.CertificateFactory;
-//import java.security.cert.X509Certificate;
-//
-//import javax.net.ssl.HostnameVerifier;
-//import javax.net.ssl.HttpsURLConnection;
-//import javax.net.ssl.SSLContext;
-//import javax.net.ssl.SSLSession;
-//import javax.net.ssl.TrustManager;
-//import javax.net.ssl.TrustManagerFactory;
-//import javax.net.ssl.X509TrustManager;
-//
-//import cn.edu.zafu.bmobdemo.R;
-//
-///**
-// * HTTPS测试 测试地址：https://certs.cac.washington.edu/CAtest/
-// * 测试证书：https://www.washington.edu/itconnect/security/ca/load-der.crt
-// *
-// *
-// * @author guojing09
-// *
-// */
-//public class MainActivity extends Activity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-//        new Thread(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                try {
-//                    initSSLWithHttpClinet();
-//                } catch (Exception e) {
-//                    Log.e("HTTPS TEST", e.getMessage());
+//        SSLContext sslContext = null;
+//        try {
+//            sslContext = SSLContext.getInstance("TLS");
+//            sslContext.init
+//                    (
+//                            null,
+//                            new TrustManager[]{new AllX509TrustManager()},
+//                            new SecureRandom()
+//                    );
+//            client.setSslSocketFactory(sslContext.getSocketFactory());
+//            client.setHostnameVerifier(new HostnameVerifier() {
+//                @Override
+//                public boolean verify(String s, SSLSession sslSession) {
+//                    return true;
 //                }
-//            }
-//        }).start();
-//    }
-//
-//    /**
-//     * HttpUrlConnection 方式，支持指定load-der.crt证书验证，此种方式Android官方建议
-//     *
-//     * @throws CertificateException
-//     * @throws IOException
-//     * @throws KeyStoreException
-//     * @throws NoSuchAlgorithmException
-//     * @throws KeyManagementException
-//     */
-//    public void initSSL() throws CertificateException, IOException, KeyStoreException,
-//            NoSuchAlgorithmException, KeyManagementException {
-//        CertificateFactory cf = CertificateFactory.getInstance("X.509");
-//        InputStream in = getAssets().open("load-der.crt");
-//        Certificate ca = cf.generateCertificate(in);
-//
-//        KeyStore keystore = KeyStore.getInstance(KeyStore.getDefaultType());
-//        keystore.load(null, null);
-//        keystore.setCertificateEntry("ca", ca);
-//
-//        String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
-//        TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
-//        tmf.init(keystore);
-//
-//        // Create an SSLContext that uses our TrustManager
-//        SSLContext context = SSLContext.getInstance("TLS");
-//        context.init(null, tmf.getTrustManagers(), null);
-//        URL url = new URL("https://certs.cac.washington.edu/CAtest/");
-//        HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-//        urlConnection.setSSLSocketFactory(context.getSocketFactory());
-//        InputStream input = urlConnection.getInputStream();
-//
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(input, "UTF-8"));
-//        StringBuffer result = new StringBuffer();
-//        String line = "";
-//        while ((line = reader.readLine()) != null) {
-//            result.append(line);
-//        }
-//        Log.e("TTTT", result.toString());
-//    }
-//
-//    /**
-//     * HttpUrlConnection支持所有Https免验证，不建议使用
-//     *
-//     * @throws KeyManagementException
-//     * @throws NoSuchAlgorithmException
-//     * @throws IOException
-//     */
-//    public void initSSLALL() throws KeyManagementException, NoSuchAlgorithmException, IOException {
-//        URL url = new URL("https://certs.cac.washington.edu/CAtest/");
-//        SSLContext context = SSLContext.getInstance("TLS");
-//        context.init(null, new TrustManager[] { new TrustAllManager() }, null);
-//        HttpsURLConnection.setDefaultSSLSocketFactory(context.getSocketFactory());
-//        HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-//
-//            @Override
-//            public boolean verify(String arg0, SSLSession arg1) {
-//                return true;
-//            }
-//        });
-//        HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
-//        connection.setDoInput(true);
-//        connection.setDoOutput(false);
-//        connection.setRequestMethod("GET");
-//        connection.connect();
-//        InputStream in = connection.getInputStream();
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-//        String line = "";
-//        StringBuffer result = new StringBuffer();
-//        while ((line = reader.readLine()) != null) {
-//            result.append(line);
-//        }
-//        Log.e("TTTT", result.toString());
-//    }
-//
-//    /**
-//     * HttpClient方式实现，支持所有Https免验证方式链接
-//     *
-//     * @throws ClientProtocolException
-//     * @throws IOException
-//     */
-//    public void initSSLAllWithHttpClient() throws ClientProtocolException, IOException {
-//        int timeOut = 30 * 1000;
-//        HttpParams param = new BasicHttpParams();
-//        HttpConnectionParams.setConnectionTimeout(param, timeOut);
-//        HttpConnectionParams.setSoTimeout(param, timeOut);
-//        HttpConnectionParams.setTcpNoDelay(param, true);
-//
-//        SchemeRegistry registry = new SchemeRegistry();
-//        registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-//        registry.register(new Scheme("https", TrustAllSSLSocketFactory.getDefault(), 443));
-//        ClientConnectionManager manager = new ThreadSafeClientConnManager(param, registry);
-//        DefaultHttpClient client = new DefaultHttpClient(manager, param);
-//
-//        HttpGet request = new HttpGet("https://certs.cac.washington.edu/CAtest/");
-//        // HttpGet request = new HttpGet("https://www.alipay.com/");
-//        HttpResponse response = client.execute(request);
-//        HttpEntity entity = response.getEntity();
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
-//        StringBuilder result = new StringBuilder();
-//        String line = "";
-//        while ((line = reader.readLine()) != null) {
-//            result.append(line);
-//        }
-//        Log.e("HTTPS TEST", result.toString());
-//    }
-//
-//    /**
-//     * HttpClient方式实现，支持验证指定证书
-//     *
-//     * @throws ClientProtocolException
-//     * @throws IOException
-//     */
-//    public void initSSLCertainWithHttpClient() throws ClientProtocolException, IOException {
-//        int timeOut = 30 * 1000;
-//        HttpParams param = new BasicHttpParams();
-//        HttpConnectionParams.setConnectionTimeout(param, timeOut);
-//        HttpConnectionParams.setSoTimeout(param, timeOut);
-//        HttpConnectionParams.setTcpNoDelay(param, true);
-//
-//        SchemeRegistry registry = new SchemeRegistry();
-//        registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-//        registry.register(new Scheme("https", TrustCertainHostNameFactory.getDefault(this), 443));
-//        ClientConnectionManager manager = new ThreadSafeClientConnManager(param, registry);
-//        DefaultHttpClient client = new DefaultHttpClient(manager, param);
-//
-//        // HttpGet request = new
-//        // HttpGet("https://certs.cac.washington.edu/CAtest/");
-//        HttpGet request = new HttpGet("https://www.alipay.com/");
-//        HttpResponse response = client.execute(request);
-//        HttpEntity entity = response.getEntity();
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
-//        StringBuilder result = new StringBuilder();
-//        String line = "";
-//        while ((line = reader.readLine()) != null) {
-//            result.append(line);
-//        }
-//        Log.e("HTTPS TEST", result.toString());
-//    }
-//
-//    public class TrustAllManager implements X509TrustManager {
-//
-//        @Override
-//        public void checkClientTrusted(X509Certificate[] arg0, String arg1)
-//                throws CertificateException {
-//            // TODO Auto-generated method stub
-//
-//        }
-//
-//        @Override
-//        public void checkServerTrusted(X509Certificate[] arg0, String arg1)
-//                throws CertificateException {
-//            // TODO Auto-generated method stub
-//
-//        }
-//
-//        @Override
-//        public X509Certificate[] getAcceptedIssuers() {
-//            // TODO Auto-generated method stub
-//            return null;
+//            });
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        } catch (KeyManagementException e) {
+//            e.printStackTrace();
 //        }
 //    }
 //
-//}
+//
+//    public void setCard(OkHttpClient client, InputStream certificate) {
+//        try {
+//            CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+//            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+//            keyStore.load(null);
+//            String certificateAlias = Integer.toString(0);
+//            keyStore.setCertificateEntry(certificateAlias, certificateFactory.generateCertificate(certificate));
+//            SSLContext sslContext = SSLContext.getInstance("TLS");
+//            final TrustManagerFactory trustManagerFactory =
+//                    TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+//            trustManagerFactory.init(keyStore);
+//            sslContext.init
+//                    (
+//                            null,
+//                            trustManagerFactory.getTrustManagers(),
+//                            new SecureRandom()
+//                    );
+//            client.setSslSocketFactory(sslContext.getSocketFactory());
+//            client.setHostnameVerifier(new HostnameVerifier() {
+//                @Override
+//                public boolean verify(String s, SSLSession sslSession) {
+//                    return true;
+//                }
+//            });
+//        } catch (CertificateException e) {
+//            e.printStackTrace();
+//        } catch (KeyStoreException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchAlgorithmException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (KeyManagementException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+    private static class TrustAllHostnameVerifier implements HostnameVerifier {
+        @Override
+        public boolean verify(String hostname, SSLSession session) {
+            return true;
+        }
+    }
+}

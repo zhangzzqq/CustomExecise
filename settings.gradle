@@ -1,4 +1,4 @@
-include ':app',':certicate'
+include ':app', ':certicate', ':okhttputils'
 
 //        ':multitypezhy',
 //        ':base-adapter-library',
