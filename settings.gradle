@@ -1,5 +1,4 @@
-include ':app', ':notificationtest'
-
+include ':app', ':notificationtest', ':cameraAlbumtest'
 
 //        ':recyclerviewtest',
 //        ':litepaltest',
