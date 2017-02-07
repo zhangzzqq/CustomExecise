@@ -1,11 +1,12 @@
-include ':app',':certicate'
+include ':app', ':notificationtest'
 
+//        ':recyclerviewtest',
+//        ':litepaltest',
+//        ':certicate'
 //        ':multitypezhy',
 //        ':base-adapter-library',
-//    ':baseadapter-recyclerview',
-
-//        ':multitype', ':multitype_library', 
-
+//        ':baseadapter-recyclerview',
+//        ':multitype', ':multitype_library',
 //        ':hideHead',
 //        ':kaiyanstudy'
 //        ':fragmentStudy'
@@ -19,11 +20,7 @@ include ':app',':certicate'
 //        ':seebigpic'
 //        ':customviewTest'
 //        ':permissiondispatcher'
-// ,
 //        ':permissionrxjava'
-// ,
 //        ':takephototest'
-// ,
 //        ':customViewLock'
-
-include ':exampleActivity'
+//        ':exampleActivity'
