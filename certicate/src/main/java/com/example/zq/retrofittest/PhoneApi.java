@@ -1,4 +1,4 @@
-package com.example.zq.test2;
+package com.example.zq.retrofittest;
 
 /**
  * Created by zhangshan on 16/9/8 下午12:03.

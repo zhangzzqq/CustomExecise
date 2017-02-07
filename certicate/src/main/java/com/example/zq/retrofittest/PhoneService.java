@@ -1,4 +1,4 @@
-package com.example.zq.test2;
+package com.example.zq.retrofittest;
 
 import com.example.zq.test1.GridviewModule;
 
@@ -13,6 +13,9 @@ public interface PhoneService {
 
     @GET("/WebService")
     Call<GridviewModule> getResult(@Query("action") String action, @Query("key") String key);
+
+    @GET("otn/")
+    Call<String> getResult2();
 
 
 
