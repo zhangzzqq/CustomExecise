@@ -1,5 +1,10 @@
-include ':app', ':notificationtest', ':servicetest', ':materialtest', ':coolweather'
 
+include ':app'
+        
+//        ':notificationtest', 
+//        ':servicetest', 
+//        ':materialtest', 
+//        ':coolweather'
 //        ':recyclerviewtest',
 //        ':litepaltest',
 //        ':certicate'
