@@ -1,0 +1,42 @@
+  1DrawerLayout 滑动菜单显示布局（分为显示界面的布局和隐藏的滑动布局）
+
+  2NavigationView 滑动菜单页面显示
+   
+  3FloatingActionButton 悬浮按钮操作
+   
+  4Snackbar 弹出提示，并带有点击操作
+  
+  5CoordinatorLayout是一个加强版的FrameLayout 
+  
+  6CardView 卡片布局 是一个FrameLayout
+  
+  7AppBarLayout 实际上是一个垂直方向上的LinearLayout :
+  
+  recyclerView布局中加入一个属性 app:layout_behavior = "@string/appbar_scrolling_view_behavior"可以避免与ToolBar滑动冲突
+  ToolBar处理 app:layout_scrollFlags = "scroll|enterAlways|snap"
+  
+  8下拉刷新 SwipeRefreshLayout 由support-v4提供
+  
+  9可折叠式标题栏效果 CollapsingToolbarLayout是一个作用于Toolbar基础之上的布局，让Toolbar效果变得更加的丰富，但只能作为AppBarLayout
+  的直接子布局来使用，而AppBarLayout又必须是CoordinatorLayout的子布局 
+  
+  10 Scrollview允许用滚动的方式来查看屏幕以外的数据，而NestedScrollView在此基础上还增加了嵌套响应滚动事件的功能
+  
+  11 
+   // 给左上角图标的左边加上一个返回的图标 。对应ActionBar.DISPLAY_HOME_AS_UP
+   actionBar.setDisplayHomeAsUpEnabled(true)    
+   http://blog.csdn.net/lovexieyuan520/article/details/9974929
+   
+ 
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    

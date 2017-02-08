@@ -1,0 +1,21 @@
+1、
+
+Intent startIntent = new Intent（this,MyService.class）；
+startSercvice(startIntent);
+
+2、
+
+startService（）方法来启动MyService这个服务，然后MyService的onCreate()和onStartCommand()方法
+就会得到执行。之后服务会一直处于运行状态，但具体运行的是什么逻辑，活动控制不了。（活动不知道服务到底去做了什么事情，以及完成的如何。）
+
+3、
+
+#####在活动中如何调用服务里的这些方法？
+有没有什么办法能让活动和服务的关系更紧密一些呢？ 借助onBind()方法来指挥服务去干事情。
+
+4、
+
+ //活动与服务绑定，左边是服务中的binder对象,右边是活动
+            downloadBinder = (MyService.DownloadBinder) service;//向下转型
+            downloadBinder.startDownload();
+            downloadBinder.getProgress();
