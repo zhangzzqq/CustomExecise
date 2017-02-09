@@ -1,5 +1,5 @@
 
-include ':app'
+include ':app',':multitypezhy', ':base-adapter-library',':baseadapter-recyclerview'
         
 //        ':notificationtest', 
 //        ':servicetest', 
@@ -8,10 +8,8 @@ include ':app'
 //        ':recyclerviewtest',
 //        ':litepaltest',
 //        ':certicate'
-//        ':multitypezhy',
-//        ':base-adapter-library',
-//        ':baseadapter-recyclerview',
-//        ':multitype', ':multitype_library',
+//        ':multitype_library'
+//        ':multitype',
 //        ':hideHead',
 //        ':kaiyanstudy'
 //        ':fragmentStudy'

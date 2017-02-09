@@ -32,6 +32,8 @@ public class MsgSendItemDelagate implements ItemViewDelegate<ChatMessage>
         }else {
             return false;
         }
+
+        //或者 return item.getType()==
         
 //        return !item.isComMeg();
 //        return true;

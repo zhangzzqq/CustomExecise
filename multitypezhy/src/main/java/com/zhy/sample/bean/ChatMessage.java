@@ -11,7 +11,7 @@ public class ChatMessage
 	private String name;
 	private String content;
 	private String createDate;
-	private boolean isComMeg;
+	private boolean isComMeg;	//这里是根据这个来判断类型
 	private int type;//通过type判断
 	
 	public final static int RECIEVE_MSG = 0;
