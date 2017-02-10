@@ -1,6 +1,5 @@
-
-include ':app'
-        
+include ':app', ':liulishuoguid', ':javalib'
+//        ':recyclerviewstudy1'
 //        ':notificationtest', 
 //        ':servicetest', 
 //        ':materialtest', 
