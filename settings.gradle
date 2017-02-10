@@ -1,6 +1,7 @@
+include ':app', ':liulishuoguid', ':javalib'
 
-include ':app',':multitypezhy', ':base-adapter-library',':baseadapter-recyclerview'
-        
+//        ':recyclerviewstudy1'
+//':multitypezhy', ':base-adapter-library',':baseadapter-recyclerview'
 //        ':notificationtest', 
 //        ':servicetest', 
 //        ':materialtest', 
