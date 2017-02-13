@@ -1,0 +1,8 @@
+
+这个项目很好的演示了事件分发的原理（事件的传递和事件的处理）
+
+    onTouchEvent 
+    
+    onDisPatchEvent
+    
+    onInterceptEvent

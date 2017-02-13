@@ -1,4 +1,4 @@
-include ':app', ':liulishuoguid', ':javalib'
+include ':app', ':liulishuoguid', ':javalib', ':viewdispatchstudy', ':mvpstudy', ':mvpdemo'
 
 //        ':recyclerviewstudy1'
 //':multitypezhy', ':base-adapter-library',':baseadapter-recyclerview'
