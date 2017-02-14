@@ -34,11 +34,11 @@ public class MainActivity extends AppCompatActivity implements WeatherView {
         ButterKnife.bind(this);
         dialog = new ProgressDialog(this);
         dialog.setTitle("正在加载中");
-        mWeatherPresenter = new WeatherPresenterImpl(this);
+        mWeatherPresenter = new WeatherPresenterImpl(this); //mvp p层
     }
     public void click(View view){
         String number = mEtCitynumber.getText().toString();
-        mWeatherPresenter.getWeatherInfo(number);
+        mWeatherPresenter.getWeatherInfo(number); //mvp p层
     }
 
     @Override
@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements WeatherView {
 
     @Override
     public void setWeatherInfo(Call<WeatherInfo> call, Response<WeatherInfo> response) {
-        WeatherInfo weatherInfo = response.body();
+        WeatherInfo weatherInfo = response.body();//是从presenter拿到数据，没有直接跟model层打交道，这就是mvp的好处
         mTextview.setText(weatherInfo.toString());
     }
+    
 }

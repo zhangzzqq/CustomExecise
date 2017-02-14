@@ -8,3 +8,8 @@ import com.example.mvpdemo.presenter.OnWeatherListener;
 public interface WeatherModel {
     void loadWeather(String cityId, OnWeatherListener weatherListener);
 }
+
+//public interface WeatherModel {
+//
+//    void loadWeather (String cityId,OnWeatherListener weatherListener);
+//}

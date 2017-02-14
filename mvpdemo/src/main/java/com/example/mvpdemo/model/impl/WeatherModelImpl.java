@@ -18,17 +18,20 @@ public class WeatherModelImpl implements WeatherModel {
     public void loadWeather(String cityId, final OnWeatherListener weatherListener) {
         DemoApi demoApi = RetrofitWrapper.getInstance().create(DemoApi.class);
         Call<WeatherInfo> weatherInfo = demoApi.getWeatherInfo(cityId);
+        
         weatherInfo.enqueue(new Callback<WeatherInfo>() {
             @Override
             public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
             //通过weatherListener回调将Modle层处理好的数据交给Presenter层
                 weatherListener.onResponse(call,response);
             }
-
+                
             @Override
             public void onFailure(Call<WeatherInfo> call, Throwable t) {
                 weatherListener.onFailure(call,t);
             }
         });
+        
+        
     }
 }

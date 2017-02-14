@@ -12,7 +12,9 @@ import retrofit2.Response;
 /**
  * Created by Administrator on 2016/4/24.
  */
+
 public class WeatherPresenterImpl implements WeatherPresenter,OnWeatherListener{
+    
     /**
      * presenter层室友model层和view层的引用
      */
@@ -20,9 +22,11 @@ public class WeatherPresenterImpl implements WeatherPresenter,OnWeatherListener{
     private WeatherView mWeatherView;
 
     public WeatherPresenterImpl(WeatherView weatherView){
+        
         this.mWeatherView = weatherView;
         mWeatherModelImpl = new WeatherModelImpl();
     }
+    
     @Override
     public void getWeatherInfo(String cityId) {
         mWeatherView.showLoading();
@@ -31,7 +35,9 @@ public class WeatherPresenterImpl implements WeatherPresenter,OnWeatherListener{
 
     @Override
     public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
+       
         mWeatherView.hideLoading();
+        //拿到数据后会回调给v层获取数据，并显示，p和v是通过接口联系的
         mWeatherView.setWeatherInfo(call,response);
     }
 
