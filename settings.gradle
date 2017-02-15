@@ -1,7 +1,12 @@
-include ':app', ':liulishuoguid', ':javalib', ':viewdispatchstudy', ':mvpstudy', ':mvpdemo'
+include ':app', ':rxjavaStudy'
 
+//        ':liulishuoguid', 
+//        ':javalib', 
+//        ':viewdispatchstudy',
+//        ':mvpstudy', 
+//        ':mvpdemo'
 //        ':recyclerviewstudy1'
-//':multitypezhy', ':base-adapter-library',':baseadapter-recyclerview'
+//        ':multitypezhy', ':base-adapter-library',':baseadapter-recyclerview'
 //        ':notificationtest', 
 //        ':servicetest', 
 //        ':materialtest', 
