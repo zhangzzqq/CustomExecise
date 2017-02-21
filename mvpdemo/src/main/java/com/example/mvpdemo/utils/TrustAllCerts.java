@@ -20,6 +20,8 @@ import javax.net.ssl.X509TrustManager;
  */
 
 public class TrustAllCerts implements X509TrustManager {
+    
+    
     @Override
     public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
 

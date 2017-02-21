@@ -16,25 +16,40 @@ public class RetrofitWrapper {
 
     public RetrofitWrapper(){
         
+// 1        
 //        OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .sslSocketFactory()//为OkHttp对象设置SocketFactory用于双向认证
 //                .hostnameVerifier(new UnSafeHostnameVerifier())
 //                .build();
+ 
+//2        
         //初始化OkHttpClient对象时进行信任证书的操作
-        OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
-        try {
-            mBuilder.sslSocketFactory(FactoryUtils.getSSLSocketFactory());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
+//        try {
+//            mBuilder.sslSocketFactory(getSSLSocketFactory())
+//                    .hostnameVerifier(org.apache.http.conn.ssl.
+//                   SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        OkHttpClient client = mBuilder.build();
+
+//3
+
+        //初始化OkHttpClient对象时进行信任证书的操作
+//        OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
+//        mBuilder.sslSocketFactory(TrustAllCerts.createSSLSocketFactory());
 //        mBuilder.hostnameVerifier(new TrustAllCerts.TrustAllHostnameVerifier());
-        OkHttpClient client = mBuilder.build();
+//        OkHttpClient client = mBuilder.build();
+        
+//4        
+        
+        OkHttpClient client = FactoryUtils.getUnSaveBuilder().build();
         
         sRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL3)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
-        
         
     }
     

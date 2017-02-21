@@ -6,7 +6,7 @@ import java.util.List;
  * Created by stevenzhang on 2017/2/21 0021.
  */
 
-public class Result2 {
+public class GridViewTest {
 
 
     /**

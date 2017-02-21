@@ -14,8 +14,7 @@ import okhttp3.OkHttpClient;
  */
 
 public class FactoryUtils {
-
-
+    
     public static javax.net.ssl.SSLSocketFactory getSSLSocketFactory() throws Exception {
         //创建一个不验证证书链的证书信任管理器。
         final TrustManager[] trustAllCerts = new TrustManager[]{new X509TrustManager() {
@@ -36,14 +35,14 @@ public class FactoryUtils {
                 return new java.security.cert.X509Certificate[0];
             }
         }};
-
+        
         // Install the all-trusting trust manager
         final SSLContext sslContext = SSLContext.getInstance("TLS");
         sslContext.init(null, trustAllCerts,
                 new java.security.SecureRandom());
         // Create an ssl socket factory with our all-trusting manager
-        return sslContext
-                .getSocketFactory();
+        return sslContext.getSocketFactory();
+        
     }
 
 
@@ -54,6 +53,7 @@ public class FactoryUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+    
+    
 }

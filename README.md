@@ -15,7 +15,9 @@ mvpdemo这个项目是mvp练习项目很好用
 rxjavaStudy 是抛物线 github里面的代码 ，还是比较有借鉴价值的 
 
 自定义证书 certicate 参考文章 Android HTTPS 自制证书实现双向认证(OkHttp + Retrofit + Rxjava)
-http://www.jianshu.com/p/64172ccfb73b
+http://www.jianshu.com/p/64172ccfb73b https://gold.xitu.io/entry/57f9fd3ad203090068b54c64
+
+测试 https://meiyaoni.com.cn/index.php/WebService?action=1021&key=111
 
 
 
