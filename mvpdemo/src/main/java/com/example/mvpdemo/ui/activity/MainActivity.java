@@ -20,6 +20,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements WeatherView {
+    
     @Bind(R.id.et_citynumber)
     EditText mEtCitynumber;
     @Bind(R.id.textview)

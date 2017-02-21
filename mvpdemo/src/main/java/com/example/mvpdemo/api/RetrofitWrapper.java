@@ -1,7 +1,9 @@
 package com.example.mvpdemo.api;
 
 import com.example.mvpdemo.common.Constant;
+import com.example.mvpdemo.utils.FactoryUtils;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -14,8 +16,26 @@ public class RetrofitWrapper {
 
     public RetrofitWrapper(){
         
-        sRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create()).build();
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+//                .sslSocketFactory()//为OkHttp对象设置SocketFactory用于双向认证
+//                .hostnameVerifier(new UnSafeHostnameVerifier())
+//                .build();
+        //初始化OkHttpClient对象时进行信任证书的操作
+        OkHttpClient.Builder mBuilder = new OkHttpClient.Builder();
+        try {
+            mBuilder.sslSocketFactory(FactoryUtils.getSSLSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        mBuilder.hostnameVerifier(new TrustAllCerts.TrustAllHostnameVerifier());
+        OkHttpClient client = mBuilder.build();
+        
+        sRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL3)
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build();
+        
+        
     }
     
     public static RetrofitWrapper getInstance(){
