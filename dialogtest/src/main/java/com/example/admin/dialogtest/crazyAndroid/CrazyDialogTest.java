@@ -1,4 +1,4 @@
-package com.example.admin.dialogtest.crazyandroid;
+package com.example.admin.dialogtest.crazyAndroid;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -130,9 +130,7 @@ public class CrazyDialogTest extends Activity{
                         pd2.dismiss();
 
                     }
-
                 }
-
 
             }
         }.start();

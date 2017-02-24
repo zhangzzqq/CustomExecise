@@ -14,6 +14,7 @@ import com.example.admin.dialogtest.R;
  */
 
 public class LoadingDialogs {
+    
     LVCircularRing mLoadingView;
     Dialog mLoadingDialog;
 
@@ -33,9 +34,10 @@ public class LoadingDialogs {
         mLoadingDialog = new Dialog(context, R.style.loading_dialog);
         // 设置返回键无效
         mLoadingDialog.setCancelable(false);
+        //显示dialog 其实显示的是wrap_content的宽和高
         mLoadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT));
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT));
     }
 
     public void show(){

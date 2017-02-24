@@ -1,5 +1,7 @@
-include ':app', ':mvpdemo',   ':certicate','okhttputils'
+include ':app',':dialogtest'
         
+//        ':mvpdemo', 
+// ':certicate','okhttputils'
 //        ':videoPlayerDemo',
 //        ':rxjavaStudy'
 //        ':liulishuoguid', 
@@ -22,7 +24,6 @@ include ':app', ':mvpdemo',   ':certicate','okhttputils'
 //        ':commonutils',
 //        ':toolstudy'
 //        ':refreshtest'
-//        ':dialogtest'
 //        ':popwindowtest'
 //        ':customImageView'
 //        ':photoPicker'
