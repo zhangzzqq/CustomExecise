@@ -10,7 +10,7 @@ import com.example.mvpdemo.R;
 import com.example.mvpdemo.api.DemoApi;
 import com.example.mvpdemo.api.RetrofitWrapper;
 import com.example.mvpdemo.model.entity.GridViewModel;
-import com.example.mvpdemo.model.entity.GridViewTest;
+import com.example.mvpdemo.model.entity.WeiXinModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,21 +33,28 @@ public class Testhttps extends Activity{
         init();
     }
     private void init() {
-        String url = "https://www.baidu.com/";
+//        String url = "https://www.baidu.com/";
+//        https://api.weixin.qq.com/sns/oauth2/access_token?
+//    // appid=wx971c10ce0155c047
+//    // &secret=9d1915c46fb1fda4be0935f15f0230bc
+//    // &code=051TPC2H1EQDI40dk23H13lq2H1TPC26
+//    // &grant_type=authorization_code  
         tvResult = (TextView) findViewById(R.id.tv_result);
+        
         DemoApi demoApi = RetrofitWrapper.getInstance().create(DemoApi.class);
-        Call<GridViewTest> call =  demoApi.getResult2("1021","111");
-        call.enqueue(new Callback<GridViewTest>() {
+        Call<WeiXinModel> call =  demoApi.getResult("wx971c10ce0155c047","9d1915c46fb1fda4be0935f15f0230bc","051TPC2H1EQDI40dk23H13lq2H1TPC26","");
+        call.enqueue(new Callback<WeiXinModel>() {
             @Override
-            public void onResponse(Call<GridViewTest> call, Response<GridViewTest> response) {
+            public void onResponse(Call<WeiXinModel> call, Response<WeiXinModel> response) {
                 
                 if(response.isSuccessful()){
-                    Log.e("Testhttps","status=="+response.body().toString());
-                    tvResult.setText(response.body().getList().get(0).getAd_pic());
+                    Log.e("Testhttps","statusstatus=="+response.body().getErrcode());
+//                    tvResult.setText(response.body().getErrcode());
+                    tvResult.setText(response.body().getErrmsg());
                 }
             }
             @Override
-            public void onFailure(Call<GridViewTest> call, Throwable t) {
+            public void onFailure(Call<WeiXinModel> call, Throwable t) {
 
                 Log.e("Testhttps","Throwable=="+t.getMessage());
             }
@@ -73,7 +80,6 @@ public class Testhttps extends Activity{
 //        });
 //        
 //       testRetrofit();
-        
         
     }
 

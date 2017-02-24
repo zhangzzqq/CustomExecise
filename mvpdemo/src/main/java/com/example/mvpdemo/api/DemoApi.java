@@ -1,9 +1,9 @@
 package com.example.mvpdemo.api;
 
 import com.example.mvpdemo.model.entity.GridViewModel;
-import com.example.mvpdemo.model.entity.Result;
 import com.example.mvpdemo.model.entity.GridViewTest;
 import com.example.mvpdemo.model.entity.WeatherInfo;
+import com.example.mvpdemo.model.entity.WeiXinModel;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -19,11 +19,15 @@ import retrofit2.http.Query;
 public interface DemoApi {
     @GET("{cityId}.html")
     Call<WeatherInfo> getWeatherInfo(@Path("cityId") String cityId);
-    
-    
+
+//    https://api.weixin.qq.com/sns/oauth2/access_token?
+//    // appid=wx971c10ce0155c047
+//    // &secret=9d1915c46fb1fda4be0935f15f0230bc
+//    // &code=051TPC2H1EQDI40dk23H13lq2H1TPC26
+//    // &grant_type=authorization_code   
     @FormUrlEncoded
-    @GET("/access_token")
-    Call<Result> 
+    @POST("access_token")
+    Call<WeiXinModel> 
     getResult(@Field("appid") String appid,
               @Field("secrect") String secrect,
               @Field("code") String code,

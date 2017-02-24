@@ -10,7 +10,7 @@ mvpdemo注意model中entity包里面的字段要写对，否则获取的数据�
 
 javaLib是java练习项目 
 
-mvpdemo这个项目是mvp练习项目很好用 
+mvpdemo这个项目是mvp练习项目很好用 (同时也含有https的一些练习，多了一个/杠号折腾了自己一个多月，昨天才发现17.2.22)
 
 rxjavaStudy 是抛物线 github里面的代码 ，还是比较有借鉴价值的 
 

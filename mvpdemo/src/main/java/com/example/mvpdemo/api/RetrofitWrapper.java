@@ -46,7 +46,7 @@ public class RetrofitWrapper {
         
         OkHttpClient client = FactoryUtils.getUnSaveBuilder().build();
         
-        sRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL3)
+        sRetrofit = new Retrofit.Builder().baseUrl(Constant.BASE_URL2)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();
