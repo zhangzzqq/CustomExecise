@@ -1,10 +1,13 @@
-include ':app', ':rxjavaStudy'
-
+include ':app',':dialogtest'
+        
+//        ':mvpdemo', 
+// ':certicate','okhttputils'
+//        ':videoPlayerDemo',
+//        ':rxjavaStudy'
 //        ':liulishuoguid', 
 //        ':javalib', 
 //        ':viewdispatchstudy',
-//        ':mvpstudy', 
-//        ':mvpdemo'
+//        ':mvpstudy',
 //        ':recyclerviewstudy1'
 //        ':multitypezhy', ':base-adapter-library',':baseadapter-recyclerview'
 //        ':notificationtest', 
@@ -12,8 +15,7 @@ include ':app', ':rxjavaStudy'
 //        ':materialtest', 
 //        ':coolweather'
 //        ':recyclerviewtest',
-//        ':litepaltest',
-//        ':certicate'
+//        ':litepaltest'
 //        ':multitype_library'
 //        ':multitype',
 //        ':hideHead',
@@ -22,7 +24,6 @@ include ':app', ':rxjavaStudy'
 //        ':commonutils',
 //        ':toolstudy'
 //        ':refreshtest'
-//        ':dialogtest'
 //        ':popwindowtest'
 //        ':customImageView'
 //        ':photoPicker'
@@ -33,3 +34,4 @@ include ':app', ':rxjavaStudy'
 //        ':takephototest'
 //        ':customViewLock'
 //        ':exampleActivity'
+

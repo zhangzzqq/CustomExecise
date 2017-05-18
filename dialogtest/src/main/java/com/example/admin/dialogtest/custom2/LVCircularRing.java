@@ -39,7 +39,8 @@ public class LVCircularRing extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
+        
+        //为了让宽高相等
         if (getMeasuredWidth() > getHeight())
             mWidth = getMeasuredHeight();
         else
@@ -47,20 +48,22 @@ public class LVCircularRing extends View {
         mPadding = 5;
     }
 
+    //绘制 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
+        //设置转的样式
         mPaint.setColor(Color.argb(100, 255, 255, 255));
         canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2 - mPadding, mPaint);
         mPaint.setColor(Color.WHITE);
+        
         RectF rectF = new RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding);
+//        RectF rectF = new RectF(mPadding, mPadding, mWidth, mWidth);//有道笔记 左上坐标和右下坐标
+       //绘制圆弧 drawArc，100代表圆弧的大小 
         canvas.drawArc(rectF, startAngle, 100
-                , false, mPaint);//第四个参数是否显示半径
-
+                , false, mPaint);//第四个参数是否显示半径 第三个参数是扫描角
     }
-
-
+    
     private void initPaint() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
@@ -68,7 +71,7 @@ public class LVCircularRing extends View {
         mPaint.setColor(Color.WHITE);
         mPaint.setStrokeWidth(8);
     }
-
+    //开启动画
     public void startAnim() {
         stopAnim();
         startViewAnim(0f, 1f, 1000);
@@ -86,7 +89,7 @@ public class LVCircularRing extends View {
     ValueAnimator valueAnimator;
 
     private ValueAnimator startViewAnim(float startF, final float endF, long time) {
-        valueAnimator = ValueAnimator.ofFloat(startF, endF);
+        valueAnimator = ValueAnimator.ofFloat(startF, endF);//告诉动画系统如何从初始值过度到结束值
 
         valueAnimator.setDuration(time);
         valueAnimator.setInterpolator(new LinearInterpolator());

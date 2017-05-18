@@ -19,10 +19,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         setContentView(R.layout.activity_custom2);
 
-    findViewById(R.id.btn1).setOnClickListener(this);
-
-
-
+        findViewById(R.id.btn1).setOnClickListener(this);
+        
+        
+        
     }
 
     @Override
@@ -33,7 +33,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     //显示Dialog
                 dialog.show();
                     //关闭Dialog
-                dialog.close();
+//                dialog.close();
 
                 break;
 
