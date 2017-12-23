@@ -18,10 +18,13 @@ public class Network {
     private static GankApi gankApi;
     private static FakeApi fakeApi;
     private static OkHttpClient okHttpClient = new OkHttpClient();
+
     private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
     private static CallAdapter.Factory rxJavaCallAdapterFactory = RxJavaCallAdapterFactory.create();
 
     public static ZhuangbiApi getZhuangbiApi() {
+
+        
         if (zhuangbiApi == null) {
             Retrofit retrofit = new Retrofit.Builder()
                     .client(okHttpClient)
