@@ -1,5 +1,8 @@
-include ':app',':dialogtest'
-        
+include ':app', ':switchtest',
+
+//        ':popwindowtest'
+        ':dialogtest'
+
 //        ':mvpdemo', 
 // ':certicate','okhttputils'
 //        ':videoPlayerDemo',
@@ -24,7 +27,7 @@ include ':app',':dialogtest'
 //        ':commonutils',
 //        ':toolstudy'
 //        ':refreshtest'
-//        ':popwindowtest'
+
 //        ':customImageView'
 //        ':photoPicker'
 //        ':seebigpic'

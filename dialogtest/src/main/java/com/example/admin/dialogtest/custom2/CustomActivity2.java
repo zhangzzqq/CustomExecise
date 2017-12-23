@@ -10,7 +10,7 @@ import com.example.admin.dialogtest.R;
  * Created by stevenZhang on 2017/1/2.
  */
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class CustomActivity2 extends Activity implements View.OnClickListener {
 
 
     @Override

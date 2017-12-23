@@ -7,7 +7,7 @@ import android.view.View;
 import com.example.admin.dialogtest.R;
 import com.example.admin.dialogtest.bochidialog.SimpleDialog;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class NomalActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
