@@ -1,9 +1,8 @@
-include ':app', ':switchtest',
-
+include ':app', ':customwidget'
+//        ':switchtest',
 //        ':popwindowtest'
-        ':dialogtest'
-
-//        ':mvpdemo', 
+//        ':dialogtest', ':mvp-pattern-master'
+//        ':mvpdemo',
 // ':certicate','okhttputils'
 //        ':videoPlayerDemo',
 //        ':rxjavaStudy'
@@ -27,7 +26,6 @@ include ':app', ':switchtest',
 //        ':commonutils',
 //        ':toolstudy'
 //        ':refreshtest'
-
 //        ':customImageView'
 //        ':photoPicker'
 //        ':seebigpic'

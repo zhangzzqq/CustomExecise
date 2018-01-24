@@ -1,0 +1,1 @@
+mvp中V层把所有逻辑先给presenter层，p层操作完后会回调格v层（Activity）
