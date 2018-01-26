@@ -1,4 +1,6 @@
-include ':app', ':customwidget'
+include ':app'
+
+//        ':customwidget'
 //        ':switchtest',
 //        ':popwindowtest'
 //        ':dialogtest', ':mvp-pattern-master'
