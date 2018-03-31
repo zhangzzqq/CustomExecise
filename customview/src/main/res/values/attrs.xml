@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--声明属性 name定义的是属性的名字
+                                        format定义的是属性的类型-->
+    <declare-styleable name="customTextView">
+        <attr name="customColor" format="color" />
+        <attr name="customText" format="string" />
+    </declare-styleable>
+
+
+    <declare-styleable name="test">
+        <attr name="text" format="string" />
+        <attr name="textAttr" format="integer" />
+    </declare-styleable>
+
+
+</resources>

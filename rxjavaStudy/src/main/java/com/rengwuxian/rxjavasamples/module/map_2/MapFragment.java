@@ -40,6 +40,7 @@ public class MapFragment extends BaseFragment {
     @Bind(R.id.gridRv) RecyclerView gridRv;
 
     ItemListAdapter adapter = new ItemListAdapter();
+
     Observer<List<Item>> observer = new Observer<List<Item>>() {
         @Override
         public void onCompleted() {
