@@ -18,10 +18,8 @@ public class CustomTextView2 extends View {
         super(context, attrs);
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.test);
-
         String text = ta.getString(R.styleable.test_text);
         int textAttr = ta.getInteger(R.styleable.test_textAttr, -1);
-
         Log.e(TAG, "text = " + text + " , textAttr = " + textAttr);
 
         ta.recycle();

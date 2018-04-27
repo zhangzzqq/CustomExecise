@@ -1,11 +1,12 @@
-include ':app', ':customview'
+include ':app',
+//        ':customview',
 
 
 //        ':rxjavaStudy',':certicate','okhttputils'
 
 //        ':customwidget'
 //        ':switchtest',
-//        ':popwindowtest'
+        ':popwindowtest'
 //        ':dialogtest', ':mvp-pattern-master'
 //        ':mvpdemo',
 // ':certicate','okhttputils'

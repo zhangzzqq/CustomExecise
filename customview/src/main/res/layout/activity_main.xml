@@ -2,12 +2,8 @@
 
 <!--自定义view是类名称-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:test="http://schemas.android.com/apk/com.example.customview.CustomTextView2"
-
-
-    tools:context=".MainActivity"
+    xmlns:test="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -15,23 +11,21 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        />
+        android:text="Hello World!" />
 
 
     <com.example.customview.CustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:customColor="@color/colorPrimary"
-        app:customText="hello world"
-        />
+        app:customText="hello world" />
 
 
     <com.example.customview.CustomTextView2
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        test:text="520"
-        test:textAttr="customview2"
+        test:text="hello world"
+        test:textAttr="521"
 
         />
 

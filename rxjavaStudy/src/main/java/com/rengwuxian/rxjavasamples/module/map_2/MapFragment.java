@@ -16,10 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rengwuxian.rxjavasamples.BaseFragment;
-import com.rengwuxian.rxjavasamples.network.Network;
 import com.rengwuxian.rxjavasamples.R;
 import com.rengwuxian.rxjavasamples.adapter.ItemListAdapter;
 import com.rengwuxian.rxjavasamples.model.Item;
+import com.rengwuxian.rxjavasamples.network.Network;
 import com.rengwuxian.rxjavasamples.util.GankBeautyResultToItemsMapper;
 
 import java.util.List;
