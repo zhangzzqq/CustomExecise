@@ -14,5 +14,22 @@
         <attr name="textAttr" format="integer" />
     </declare-styleable>
 
+    <declare-styleable name="DelEdit">
+        <attr name="mTextSize" format="dimension"/>
+        <attr name="mTextColor" format="color|reference"/>
+        <attr name="mHintColor" format="color|reference"/>
+        <attr name="mText" format="string"/>
+        <attr name="mHint" format="string"/>
+        <attr name="mMaxLength" format="integer"/>
+        <!--是否显示密码查看-->
+        <attr name="mShowAble" format="boolean"/>
+        <attr name="mInputType" format="enum">
+            <enum  name="text" value="0" />
+            <enum  name="number" value="1"/>
+            <enum  name="password" value="2"/>
+        </attr>
+    </declare-styleable>
+
+
 
 </resources>

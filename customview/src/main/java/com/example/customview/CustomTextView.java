@@ -47,7 +47,6 @@ public class CustomTextView extends View {
 
         init();
 
-
     }
 
     @Override

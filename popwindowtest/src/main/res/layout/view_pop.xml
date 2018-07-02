@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@android:color/darker_gray"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="fill_parent"
+        android:layout_height="40dip"
+        android:singleLine="true"
+        android:textSize="16sp" >
+    </EditText>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_input"
+        android:layout_marginTop="20dip"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="30dip"
+            android:text="确定" />
+
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="80dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dip"
+            android:text="取消" />
+    </LinearLayout>
+
+</RelativeLayout>

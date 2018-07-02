@@ -16,21 +16,66 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!" />
-    
-    
-    <Button
-        android:layout_marginTop="16dp"
-        android:id="@+id/btn1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" 
-        android:text="button1"
-        />
+
 
     <Button
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="button1" />
+
+    <Button
         android:id="@+id/share"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="share"
+        android:layout_marginTop="16dp"
+        android:text="share" />
+
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="edit"
+        android:textAllCaps="false" />
+
+    <LinearLayout
+        android:id="@+id/ll_test"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btntest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+
+            android:text="btntest"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/listviewtest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="listviewtest"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:onClick="button1"
+        android:textAllCaps="false"
+        android:text="activity_main1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         />
+
+
+
+
 </LinearLayout>
