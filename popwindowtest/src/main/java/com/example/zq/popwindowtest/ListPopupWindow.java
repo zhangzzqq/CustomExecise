@@ -131,7 +131,7 @@ public class ListPopupWindow extends PopupWindow {
 
     public void showLocation() {
         popupWindow.showAtLocation(llRoot, Gravity.FILL, 0, -getStatusBarHeight((Activity) context));
-        backgroundAlpha(0.2f);
+        backgroundAlpha(0.4f);
     }
 
     /**

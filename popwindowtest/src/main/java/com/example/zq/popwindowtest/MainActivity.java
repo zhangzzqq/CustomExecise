@@ -78,12 +78,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn1:
-                MorePopWindow popWindow = new MorePopWindow(this);
+                ChatPopWindow popWindow = new ChatPopWindow(this);
                 popWindow.showPopupWindow(button1);
                 break;
 
             case R.id.share:
-                final CustomPopWindow customPopWindow = new CustomPopWindow(this, btnShare);
+                final SharePopWindow customPopWindow = new SharePopWindow(this, btnShare);
                 customPopWindow.setCancelButtonOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

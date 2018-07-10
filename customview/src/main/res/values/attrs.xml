@@ -15,20 +15,57 @@
     </declare-styleable>
 
     <declare-styleable name="DelEdit">
-        <attr name="mTextSize" format="dimension"/>
-        <attr name="mTextColor" format="color|reference"/>
-        <attr name="mHintColor" format="color|reference"/>
-        <attr name="mText" format="string"/>
-        <attr name="mHint" format="string"/>
-        <attr name="mMaxLength" format="integer"/>
+        <attr name="mTextSize" format="dimension" />
+        <attr name="mTextColor" format="color|reference" />
+        <attr name="mHintColor" format="color|reference" />
+        <attr name="mText" format="string" />
+        <attr name="mHint" format="string" />
+        <attr name="mMaxLength" format="integer" />
         <!--是否显示密码查看-->
-        <attr name="mShowAble" format="boolean"/>
+        <attr name="mShowAble" format="boolean" />
         <attr name="mInputType" format="enum">
-            <enum  name="text" value="0" />
-            <enum  name="number" value="1"/>
-            <enum  name="password" value="2"/>
+            <enum name="text" value="0" />
+            <enum name="number" value="1" />
+            <enum name="password" value="2" />
         </attr>
     </declare-styleable>
+
+
+    <declare-styleable name="PieChart">
+        <attr name="showText" format="boolean" />
+        <attr name="labelPosition" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="CustomTitleView">
+        <attr name="titleText" />
+        <attr name="titleTextColor"  />
+        <attr name="titleTextSize"/>
+    </declare-styleable>
+
+<!--这样写的好处是，可以被其他属性用到，共用一些相同的属性，写在里面的话，有时候遇到共有的声明会报错-->
+    <attr name="titleText" format="string" />
+    <attr name="titleTextSize" format="dimension" />
+    <attr name="titleTextColor" format="color" />
+    <attr name="image" format="reference" />
+    <attr name="imageScaleType">
+        <enum name="fillXY" value="0" />
+        <enum name="center" value="1" />
+    </attr>
+
+    <declare-styleable name="CustomImageView">
+        <attr name="titleText" />
+        <attr name="titleTextSize"  />
+        <attr name="titleTextColor" />
+        <attr name="image" />
+        <attr name="imageScaleType" />
+    </declare-styleable>
+
+
 
 
 

@@ -21,7 +21,7 @@ import java.util.List;
  * Created by stevenzhang on 2016/12/29 0029.
  */
 
-public class CustomPopWindow {
+public class SharePopWindow {
 
     private PopupWindow popupWindow;
     private GridView gridView;
@@ -29,7 +29,7 @@ public class CustomPopWindow {
     private SimpleAdapter saImageItems;
     private int[] image = {R.mipmap.logo_sinaweibo, R.mipmap.logo_wechat, R.mipmap.logo_wechatmoments, R.mipmap.logo_qq};
     private String[] name = {"微博", "微信好友", "微信朋友圈", "QQ"};
-    public CustomPopWindow(final Activity act, View v) {
+    public SharePopWindow(final Activity act, View v) {
         View convertView = LayoutInflater.from(act).inflate(R.layout.share_dialog,null);
         popupWindow = new PopupWindow(convertView, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));

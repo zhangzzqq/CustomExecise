@@ -14,10 +14,10 @@ import android.widget.RelativeLayout;
  * Created by stevenzhang on 2016/12/29 0029.
  */
 
-public class MorePopWindow extends PopupWindow {
+public class ChatPopWindow extends PopupWindow {
 
     @SuppressLint("InflateParams")
-    public MorePopWindow(final Activity context) {
+    public ChatPopWindow(final Activity context) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View content = inflater.inflate(R.layout.popupwindow_add, null);
@@ -48,7 +48,7 @@ public class MorePopWindow extends PopupWindow {
 //                Intent intent = new Intent(new Intent(context, SelectFriendsActivity.class));
 //                intent.putExtra("createGroup", true);
 //                context.startActivity(intent);
-                MorePopWindow.this.dismiss();
+                ChatPopWindow.this.dismiss();
 
             }
         });
@@ -57,7 +57,7 @@ public class MorePopWindow extends PopupWindow {
             @Override
             public void onClick(View v) {
 //                context.startActivity(new Intent(context, SelectFriendsActivity.class));
-                MorePopWindow.this.dismiss();
+                ChatPopWindow.this.dismiss();
 
             }
         });
@@ -65,7 +65,7 @@ public class MorePopWindow extends PopupWindow {
             @Override
             public void onClick(View v) {
 //                context.startActivity(new Intent(context, SearchFriendActivity.class));
-                MorePopWindow.this.dismiss();
+                ChatPopWindow.this.dismiss();
             }
         });
     }
