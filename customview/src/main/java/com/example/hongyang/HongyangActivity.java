@@ -12,7 +12,7 @@ import com.example.customview.R;
  * Create by: steven
  * Date: 2018/7/2
  */
-public class hongyangActivity extends AppCompatActivity {
+public class HongyangActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

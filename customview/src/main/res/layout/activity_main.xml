@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--自定义view是类名称-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:test="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="customer1"
+        android:text="customer1"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="customer2"
+        android:text="customer2"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="customer3"
+        android:text="customer3"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="customer4"
+        android:text="customer4"
+        android:textAllCaps="false" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="customer5"
+        android:text="customer5"
+        android:textAllCaps="false" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,20 +47,7 @@
         android:text="Hello World!" />
 
 
-    <com.example.customview.CustomTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:customColor="@color/colorPrimary"
-        app:customText="hello world" />
 
-
-    <com.example.customview.CustomTextView2
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        test:text="hello world"
-        test:textAttr="521"
-
-        />
 
 
 </LinearLayout>

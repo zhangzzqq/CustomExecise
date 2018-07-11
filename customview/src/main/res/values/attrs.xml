@@ -66,6 +66,17 @@
     </declare-styleable>
 
 
+    <!--如果有些属性我们希望由用户指定，只有当用户不指定的时候才用我们硬编码的值，
+    比如上面的默认尺寸，我们想要由用户自己在布局文件里面指定该怎么做呢？那当然是通我们自定属性，
+    让用户用我们定义的属性啦~-->
+
+    <!--name为声明的"属性集合"名，可以随便取，但是最好是设置为跟我们的View一样的名称-->
+    <declare-styleable name="SimpleCustomerView">
+        <!--声明我们的属性，名称为default_size,取值类型为尺寸类型（dp,px等）-->
+        <attr name="default_size" format="dimension" />
+    </declare-styleable>
+
+
 
 
 

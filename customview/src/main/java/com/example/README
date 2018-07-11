@@ -72,9 +72,75 @@ customerview 写的不是很好，不知道是什么情况
      自定义view官方的例子 加深理解 https://developer.android.google.cn/training/custom-views/create-view
      自定义view 的构造函数，写在含有两个参数的构造方法就可以了
 
+
+    重写之前先了解MeasureSpec的specMode,一共三种类型：
+    EXACTLY：一般是设置了明确的值或者是MATCH_PARENT
+    AT_MOST：表示子布局限制在一个最大值内，一般为WARP_CONTENT
+    UNSPECIFIED：表示子布局想要多大就多大，很少使用
+
+
      后面的计划：
 
      自定义圆，正方形 ，矩形，图标，滑动控件，水波纹，按钮，shape selector
 
 
 
+    /**
+     *
+     *  Canvas 代表画布
+     *  Paint 代表画笔、画刷、颜料
+     *  Rect   表示坐标系中的一块矩形区域，并可以对其做一些简单操作。这块矩形区域，需要用左上和右下两个坐标点表示。
+     *
+     * @param canvas
+     */
+
+
+         /**
+          * @param canvas 07-02 16:23:11.705 13200-13200/com.example.customview
+          *               E/xxx: measuredWidth==600width==600mBoundWidth==259
+          *               measuredHeight==300height==300mBoundHeight==89
+          *
+          *
+          *               这时你会发现getWidth=200，是layout方法中传过去的200-0，getMeasureWidth=50，
+          *               是setMeasuredDimension方法设置的值,但是显示在屏幕上的确是一个正方形也就是显示的是layout设置的宽200，
+          *               高200。但是这种情况是非常少见的，这里这是为了演示效果才这样写，一般情况下getMeasuredWidth和getWidth方法的
+          *               值是一致的,这里只要记住一般情况下除了在onLayout方法中调用getMeasuredWidth方法外其它的地方用getWidth方法就行了。
+          *
+          *               总结
+          *               https://blog.csdn.net/dmk877/article/details/49734869
+          *               ①getMeasuredWidth方法获得的值是setMeasuredDimension方法设置的值，它的值在measure方法运行后就会确定
+          *
+          *               ②getWidth方法获得是layout方法中传递的四个参数中的mRight-mLeft，它的值是在layout方法运行后确定的
+          *
+          *               ③一般情况下在onLayout方法中使用getMeasuredWidth方法，而在除onLayout方法之外的地方用getWidth方法。
+          */
+
+
+            /**
+               * 实现功能：
+               *
+               *
+               *
+               * 注意事项：
+               *
+               * 当我们设置为WRAP_CONTENT,或者MATCH_PARENT系统帮我们测量的结果就是MATCH_PARENT的长度。
+               *
+               * 所以，当设置了WRAP_CONTENT时，我们需要自己进行测量，即重写onMesure方法”：
+               *
+               * 重写之前先了解MeasureSpec的specMode,一共三种类型：
+               *
+               * EXACTLY：一般为设置了明确的值或者是MATCH_PARENT
+               *
+               * AT_MOST：表示子布局限制在一个最大值内，一般为WARP_CONTENT
+               *
+               * UNSPECIFIED：表示子布局想要多大就多大，很少使用
+               *
+               * 下面是我们重写onMeasure代码：
+               *
+               *
+               *  https://developer.android.google.cn/reference/android/view/View.MeasureSpec.html#getSize(int)
+               *
+               *  measureSpec	int：从中提取模式的度量指定
+               *
+               *
+               */
