@@ -31,11 +31,11 @@ public class SharePopWindow {
     private String[] name = {"微博", "微信好友", "微信朋友圈", "QQ"};
     public SharePopWindow(final Activity act, View v) {
         View convertView = LayoutInflater.from(act).inflate(R.layout.share_dialog,null);
-        popupWindow = new PopupWindow(convertView, ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
+        popupWindow = new PopupWindow(convertView, 300,ViewGroup.LayoutParams.WRAP_CONTENT,true);
         popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
         setBackgroundAlpha(act, 0.4f);
         //在最底部显示
-        popupWindow.showAtLocation(v, Gravity.AXIS_X_SHIFT | Gravity.BOTTOM, 0, 0);
+        popupWindow.showAtLocation(v, Gravity.AXIS_X_SHIFT | Gravity.BOTTOM, -100, 100);
         popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
             @Override
             public void onDismiss() {

@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
         <activity android:name="com.example.base.MainActivity">
             <intent-filter>
@@ -16,14 +17,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustomerActivity" />
-        <activity android:name="com.example.login.LoginActivity" />
-        <activity android:name="com.example.hongyang.HongyangActivity" />
+        <activity android:name=".CustomerActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.login.LoginActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.hongyang.HongyangActivity"
+            android:screenOrientation="portrait"
+            />
         <!-- <activity android:name="com.example.hongyang.HongyangActivity" /> -->
 
-        <activity android:name="com.example.simpleexercise.SimpleExerciseActivity" />
-        <activity android:name="com.example.guolin.GuolinActivity" />
-        <activity android:name="com.example.guolin.GuolinActivity2"></activity>
+        <activity android:name="com.example.simpleexercise.SimpleExerciseActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.guolin.GuolinActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.example.guolin.GuolinActivity2"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".CustomerView5"
+            android:screenOrientation="portrait"
+            ></activity>
     </application>
 
 </manifest>

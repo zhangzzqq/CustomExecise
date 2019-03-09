@@ -40,11 +40,15 @@
         android:text="customer5"
         android:textAllCaps="false" />
 
-
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:onClick="customer6"
+        android:text="customer6"
+        android:textAllCaps="false" />
+
+
+
 
 
 

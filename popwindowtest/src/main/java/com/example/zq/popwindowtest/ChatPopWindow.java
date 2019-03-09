@@ -77,7 +77,7 @@ public class ChatPopWindow extends PopupWindow {
     public void showPopupWindow(View parent) {
         if (!this.isShowing()) {
             // 以下拉方式显示popupwindow
-            this.showAsDropDown(parent, 0, 0);
+            this.showAsDropDown(parent, 100, 50);
         } else {
             this.dismiss();
         }

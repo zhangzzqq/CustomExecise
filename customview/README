@@ -1,3 +1,24 @@
 
 这个功能的实现，需要XML创建自定义属性和在自定义View中解析属性
 
+自定义view书籍
+http://book.51cto.com/art/201204/328247.htm
+
+
+
+比较好的demo
+Android Custom View Tutorial
+https://www.raywenderlich.com/142-android-custom-view-tutorial
+
+
+自定义View，有这一篇就够了
+https://www.jianshu.com/p/c84693096e41
+http://www.runoob.com/w3cnote/android-advance-custom-view.html
+https://blog.csdn.net/qq_26787115/article/details/50466655
+
+
+
+构造函数
+https://www.jianshu.com/p/a465ee6c392f
+https://blog.csdn.net/wzy_1988/article/details/49619773
+

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.customview.CustomerActivity;
+import com.example.customview.CustomerView5;
 import com.example.customview.R;
 import com.example.hongyang.HongyangActivity;
 import com.example.login.LoginActivity;
@@ -49,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void customer5(View view) {
+        startActivity(new Intent(MainActivity.this, CustomerView5.class));
+
+    }
+
+    public void customer6(View view) {
 
 
     }

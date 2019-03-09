@@ -1,15 +1,18 @@
-include ':app',
-        ':customview',
+include ':app'
+include ':customview'
 
 
+
+//        ':popwindowtest'
+//        ':listviewtest'
+//        ':customview',
 //        ':rxjavaStudy',':certicate','okhttputils'
-
 //        ':customwidget'
 //        ':switchtest',
-        ':popwindowtest'
+//        ':popwindowtest'
 //        ':dialogtest', ':mvp-pattern-master'
 //        ':mvpdemo',
-// ':certicate','okhttputils'
+//        ':certicate','okhttputils'
 //        ':videoPlayerDemo',
 //        ':rxjavaStudy'
 //        ':liulishuoguid', 
@@ -41,4 +44,3 @@ include ':app',
 //        ':takephototest'
 //        ':customViewLock'
 //        ':exampleActivity'
-
