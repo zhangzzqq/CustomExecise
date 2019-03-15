@@ -1,5 +1,6 @@
 include ':app'
-include ':customview'
+//include ':customview'
+include ':customImageView'
 
 
 

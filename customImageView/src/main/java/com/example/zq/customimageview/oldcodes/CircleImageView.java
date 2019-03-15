@@ -1,4 +1,4 @@
-package com.example.zq.customimageview;
+package com.example.zq.customimageview.oldcodes;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -20,6 +20,8 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.example.zq.customimageview.R;
 
 /**
  * Created by stevenzhang on 2016/12/24 0024.

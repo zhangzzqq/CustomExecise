@@ -1,4 +1,4 @@
-package com.example.zq.customimageview;
+package com.example.zq.customimageview.oldcodes;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.zq.customimageview.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,15 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-       RoundImageView  roundImage = (RoundImageView) findViewById(R.id.roundimage);
-       CircleImageView  circleImageView = (CircleImageView) findViewById(R.id.circleimageview);
+       RoundImageView roundImage = (RoundImageView) findViewById(R.id.roundimage);
+       CircleImageView circleImageView = (CircleImageView) findViewById(R.id.circleimageview);
         ImageView view1 = (ImageView) findViewById(R.id.iv1);
         ImageView view2 = (ImageView) findViewById(R.id.iv2);
 
-//        Glide.with(MainActivity.this).load(Url).into(roundImage);
-//        Picasso.with(MainActivity.this).load(Url).into(roundImage);
+//        Glide.with(CustomCircleImageViewActivity.this).load(Url).into(roundImage);
+//        Picasso.with(CustomCircleImageViewActivity.this).load(Url).into(roundImage);
 
-//        Glide.with(MainActivity.this).load(Url).into(circleImageView);
+//        Glide.with(CustomCircleImageViewActivity.this).load(Url).into(circleImageView);
 
         Glide.with(MainActivity.this).load(Url).transform(new GlideCircleTransform(MainActivity.this)).into(view1);
          //必须写，否则会报类型转化异常

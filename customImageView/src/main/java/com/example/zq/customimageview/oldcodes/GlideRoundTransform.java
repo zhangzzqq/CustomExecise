@@ -1,4 +1,4 @@
-package com.example.zq.customimageview;
+package com.example.zq.customimageview.oldcodes;
 
 /**
  * Created by stevenzhang on 2016/12/24 0024.
