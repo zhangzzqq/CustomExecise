@@ -1,9 +1,7 @@
 include ':app'
+//include ':popwindowtest'
 //include ':customview'
-include ':customImageView'
-
-
-
+//include ':customImageView'
 //        ':popwindowtest'
 //        ':listviewtest'
 //        ':customview',
