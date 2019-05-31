@@ -1,0 +1,5 @@
+
+
+1  BaseActivity 在baseactivity中监听网络变化
+
+2 在某个类中监听网络变化 NetworkChangedReceiver（工具类）

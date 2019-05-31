@@ -1,4 +1,5 @@
-include ':app'
+include ':app',':broadcaststudy'
+//        ':emptylistview',
 //include ':popwindowtest'
 //include ':customview'
 //include ':customImageView'
